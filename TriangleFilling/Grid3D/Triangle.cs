@@ -1,4 +1,6 @@
-﻿namespace TriangleFilling.Grid3D
+﻿using TriangleFilling.Coloring;
+
+namespace TriangleFilling.Grid3D
 {
     internal class Triangle
     {
@@ -25,19 +27,8 @@
 
         public void Fill(Graphics g)
         {
-            using (Brush brush = new SolidBrush(Color))
-            {
-                // Create an array of points to represent the triangle
-                PointF[] points = new PointF[]
-                {
-                    new PointF(V0.PositionRotated.X, V0.PositionRotated.Y),
-                    new PointF(V1.PositionRotated.X, V1.PositionRotated.Y),
-                    new PointF(V2.PositionRotated.X, V2.PositionRotated.Y)
-                };
-
-                // Fill the triangle using the brush
-                g.FillPolygon(brush, points);
-            }
+            List<Vertex> vertices = new List<Vertex>() { V0, V1, V2 };
+            ShapeColorer.ColorShape(vertices, Color);
         }
     }
 }
