@@ -96,6 +96,7 @@
             betaDegreeTrackBar.Name = "betaDegreeTrackBar";
             betaDegreeTrackBar.Size = new Size(174, 45);
             betaDegreeTrackBar.TabIndex = 4;
+            betaDegreeTrackBar.TickFrequency = 2;
             betaDegreeTrackBar.Scroll += betaDegreeTrackBar_Scroll;
             // 
             // label2
@@ -115,6 +116,7 @@
             alphaDegreeTrackBar.Name = "alphaDegreeTrackBar";
             alphaDegreeTrackBar.Size = new Size(174, 45);
             alphaDegreeTrackBar.TabIndex = 2;
+            alphaDegreeTrackBar.TickFrequency = 9;
             alphaDegreeTrackBar.Scroll += alphaDegreeTrackBar_Scroll;
             // 
             // label1
@@ -129,11 +131,12 @@
             // precisionTrackBar
             // 
             precisionTrackBar.Location = new Point(69, 12);
-            precisionTrackBar.Maximum = 64;
+            precisionTrackBar.Maximum = 128;
             precisionTrackBar.Minimum = 1;
             precisionTrackBar.Name = "precisionTrackBar";
             precisionTrackBar.Size = new Size(174, 45);
             precisionTrackBar.TabIndex = 0;
+            precisionTrackBar.TickFrequency = 16;
             precisionTrackBar.Value = 16;
             precisionTrackBar.Scroll += precisionTrackBar_Scroll;
             // 

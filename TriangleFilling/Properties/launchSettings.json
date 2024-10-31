@@ -2,7 +2,7 @@
   "profiles": {
     "TriangleFilling": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\dell\\OneDrive\\Desktop\\Moje-Programy\\GitHub-repos\\grafika-komputerowa\\TriangleFilling"
+      "workingDirectory": "."
     }
   }
 }
