@@ -45,7 +45,7 @@ namespace TriangleFilling.Grid3D
 
             for (int i = precision - 2; i >= 0; i--)
             {
-                for (int j = 0; j < precision; j++)
+                for (int j = precision - 1; j >= 0; j--)
                 {
                     if (j != precision - 1)
                     {
@@ -57,6 +57,8 @@ namespace TriangleFilling.Grid3D
                         Triangles.Add(new Triangle(Vertices[i + j * precision], Vertices[i + j * precision + 1], Vertices[i + j * precision - precision + 1]));
                         Triangles[Triangles.Count - 1].Color = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)); // reamove later
                     }
+
+
                 }
             }
         }
