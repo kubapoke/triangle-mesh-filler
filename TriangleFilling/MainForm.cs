@@ -70,6 +70,19 @@ namespace TriangleFilling
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision);
+            Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
+            Repaint();
+        }
+
+        private void alphaDegreeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            Grid.Rotate(alphaDegreeTrackBar.Value, null);
+            Repaint();
+        }
+
+        private void betaDegreeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            Grid.Rotate(null, betaDegreeTrackBar.Value);
             Repaint();
         }
     }

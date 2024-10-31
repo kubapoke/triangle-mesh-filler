@@ -96,6 +96,7 @@
             betaDegreeTrackBar.Name = "betaDegreeTrackBar";
             betaDegreeTrackBar.Size = new Size(174, 45);
             betaDegreeTrackBar.TabIndex = 4;
+            betaDegreeTrackBar.Scroll += betaDegreeTrackBar_Scroll;
             // 
             // label2
             // 
@@ -114,6 +115,7 @@
             alphaDegreeTrackBar.Name = "alphaDegreeTrackBar";
             alphaDegreeTrackBar.Size = new Size(174, 45);
             alphaDegreeTrackBar.TabIndex = 2;
+            alphaDegreeTrackBar.Scroll += alphaDegreeTrackBar_Scroll;
             // 
             // label1
             // 

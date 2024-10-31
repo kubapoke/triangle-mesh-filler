@@ -4,7 +4,7 @@ namespace TriangleFilling.Grid3D
 {
     internal class Grid
     {
-        private float Size;
+        private float Size, RotationAlpha = 0, RotationBeta = 0;
         private List<Vertex> Vertices;
         private List<Triangle> Triangles;
         internal Grid(Vector3[,] V, float width, float heigth, int precision)
@@ -129,6 +129,22 @@ namespace TriangleFilling.Grid3D
                 result /= d;
             }
             return result;
+        }
+
+        public void Rotate(float? rotationAlpha, float? rotationBeta)
+        {
+            if (rotationAlpha != null)
+                RotationAlpha = (float)rotationAlpha;
+            if (rotationBeta != null)
+                RotationBeta = (float)rotationBeta;
+
+            float alphaRad = ((float)Math.PI / 180f) * RotationAlpha;
+            float betaRad = ((float)Math.PI / 180f) * RotationBeta;
+
+            foreach (var vertex in Vertices)
+            {
+                vertex.Rotate(alphaRad, betaRad);
+            }
         }
 
         public void Draw(Graphics g)
