@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             mainSplitContainer = new SplitContainer();
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
-            precisionTrackBar = new TrackBar();
-            label2 = new Label();
-            alphaDegreeTrackBar = new TrackBar();
+            mainPictureBox = new PictureBox();
             label3 = new Label();
             betaDegreeTrackBar = new TrackBar();
+            label2 = new Label();
+            alphaDegreeTrackBar = new TrackBar();
+            label1 = new Label();
+            precisionTrackBar = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
             mainSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mainPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)betaDegreeTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).BeginInit();
             SuspendLayout();
             // 
             // mainSplitContainer
@@ -56,7 +56,7 @@
             // 
             // mainSplitContainer.Panel1
             // 
-            mainSplitContainer.Panel1.Controls.Add(pictureBox1);
+            mainSplitContainer.Panel1.Controls.Add(mainPictureBox);
             // 
             // mainSplitContainer.Panel2
             // 
@@ -70,33 +70,32 @@
             mainSplitContainer.SplitterDistance = 550;
             mainSplitContainer.TabIndex = 0;
             // 
-            // pictureBox1
+            // mainPictureBox
             // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(550, 450);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            mainPictureBox.Dock = DockStyle.Fill;
+            mainPictureBox.Location = new Point(0, 0);
+            mainPictureBox.Name = "mainPictureBox";
+            mainPictureBox.Size = new Size(550, 450);
+            mainPictureBox.TabIndex = 0;
+            mainPictureBox.TabStop = false;
+            mainPictureBox.Paint += mainPictureBox_Paint;
             // 
-            // label1
+            // label3
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(10, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(58, 15);
-            label1.TabIndex = 1;
-            label1.Text = "precision:";
+            label3.AutoSize = true;
+            label3.Location = new Point(10, 117);
+            label3.Name = "label3";
+            label3.Size = new Size(56, 15);
+            label3.TabIndex = 5;
+            label3.Text = "beta deg:";
             // 
-            // precisionTrackBar
+            // betaDegreeTrackBar
             // 
-            precisionTrackBar.Location = new Point(69, 12);
-            precisionTrackBar.Maximum = 64;
-            precisionTrackBar.Minimum = 1;
-            precisionTrackBar.Name = "precisionTrackBar";
-            precisionTrackBar.Size = new Size(174, 45);
-            precisionTrackBar.TabIndex = 0;
-            precisionTrackBar.Value = 16;
+            betaDegreeTrackBar.Location = new Point(69, 114);
+            betaDegreeTrackBar.Minimum = -10;
+            betaDegreeTrackBar.Name = "betaDegreeTrackBar";
+            betaDegreeTrackBar.Size = new Size(174, 45);
+            betaDegreeTrackBar.TabIndex = 4;
             // 
             // label2
             // 
@@ -116,22 +115,25 @@
             alphaDegreeTrackBar.Size = new Size(174, 45);
             alphaDegreeTrackBar.TabIndex = 2;
             // 
-            // label3
+            // label1
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(10, 117);
-            label3.Name = "label3";
-            label3.Size = new Size(56, 15);
-            label3.TabIndex = 5;
-            label3.Text = "beta deg:";
+            label1.AutoSize = true;
+            label1.Location = new Point(10, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 15);
+            label1.TabIndex = 1;
+            label1.Text = "precision:";
             // 
-            // betaDegreeTrackBar
+            // precisionTrackBar
             // 
-            betaDegreeTrackBar.Location = new Point(69, 114);
-            betaDegreeTrackBar.Minimum = -10;
-            betaDegreeTrackBar.Name = "betaDegreeTrackBar";
-            betaDegreeTrackBar.Size = new Size(174, 45);
-            betaDegreeTrackBar.TabIndex = 4;
+            precisionTrackBar.Location = new Point(69, 12);
+            precisionTrackBar.Maximum = 64;
+            precisionTrackBar.Minimum = 1;
+            precisionTrackBar.Name = "precisionTrackBar";
+            precisionTrackBar.Size = new Size(174, 45);
+            precisionTrackBar.TabIndex = 0;
+            precisionTrackBar.Value = 16;
+            precisionTrackBar.Scroll += precisionTrackBar_Scroll;
             // 
             // MainForm
             // 
@@ -147,17 +149,17 @@
             mainSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).EndInit();
             mainSplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mainPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)betaDegreeTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private SplitContainer mainSplitContainer;
-        private PictureBox pictureBox1;
+        private PictureBox mainPictureBox;
         private TrackBar precisionTrackBar;
         private Label label1;
         private Label label3;
