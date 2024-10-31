@@ -38,20 +38,24 @@ namespace TriangleFilling.Grid3D
 
         private void AddTrinagles(int precision)
         {
+            Random rnd = new Random(); // remove later
+
             Triangles = new List<Triangle>();
             precision++;
 
-            for (int i = 0; i < precision - 1; i++)
+            for (int i = precision - 2; i >= 0; i--)
             {
                 for (int j = 0; j < precision; j++)
                 {
                     if (j != precision - 1)
                     {
                         Triangles.Add(new Triangle(Vertices[i + j * precision], Vertices[i + j * precision + 1], Vertices[i + j * precision + precision]));
+                        Triangles[Triangles.Count - 1].Color = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)); // remove later
                     }
                     if (j != 0)
                     {
                         Triangles.Add(new Triangle(Vertices[i + j * precision], Vertices[i + j * precision + 1], Vertices[i + j * precision - precision + 1]));
+                        Triangles[Triangles.Count - 1].Color = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)); // reamove later
                     }
                 }
             }
@@ -151,6 +155,7 @@ namespace TriangleFilling.Grid3D
         {
             foreach (var triangle in Triangles)
             {
+                triangle.Fill(g);
                 triangle.Draw(g);
             }
         }
