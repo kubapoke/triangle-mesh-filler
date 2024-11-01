@@ -167,19 +167,24 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void setKd(float kd)
+        public void SetKd(float kd)
         {
             Kd = kd;
         }
 
-        public void setKs(float ks)
+        public void SetKs(float ks)
         {
             Ks = ks;
         }
 
-        public void setM(int m)
+        public void SetM(int m)
         {
             M = m;
+        }
+
+        public void SetColor(Color color)
+        {
+            Color = color;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace TriangleFilling
         private LightSource Light;
         private Task AnimationTask;
         private bool ShouldAnimate = true;
+        private Color SurfaceColor, LightColor;
         private int Precision
         {
             get
@@ -68,6 +69,8 @@ namespace TriangleFilling
 
             Light = new LightSource(new Vector3(0, 0, 0), Color.White);
             calculateLightPosition();
+
+            SurfaceColor = LightColor = Color.White;
 
             Repaint();
         }
@@ -186,19 +189,19 @@ namespace TriangleFilling
 
         private void kdTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid.setKd(Kd);
+            Grid.SetKd(Kd);
             Repaint();
         }
 
         private void ksTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid.setKs(Ks);
+            Grid.SetKs(Ks);
             Repaint();
         }
 
         private void mTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid.setM(M);
+            Grid.SetM(M);
             Repaint();
         }
 
@@ -228,6 +231,38 @@ namespace TriangleFilling
                 lightRotationTrackBar.Enabled = true;
                 AnimationTask.Wait();
             }
+        }
+
+        private void surfaceColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.AllowFullOpen = false;
+            dialog.ShowHelp = true;
+            dialog.Color = SurfaceColor;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                surfaceColorPanel.BackColor = SurfaceColor = dialog.Color;
+                Grid.SetColor(SurfaceColor);
+            }
+
+            Repaint();
+        }
+
+        private void lightColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.AllowFullOpen = false;
+            dialog.ShowHelp = true;
+            dialog.Color = LightColor;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                lightColorPanel.BackColor = LightColor = dialog.Color;
+                Light.Color = LightColor;
+            }
+
+            Repaint();
         }
     }
 }

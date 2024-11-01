@@ -30,6 +30,10 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            lightColorPanel = new Panel();
+            surfaceColorPanel = new Panel();
+            lightColorButton = new Button();
+            surfaceColorButton = new Button();
             animationCheckBox = new CheckBox();
             label7 = new Label();
             lightRotationTrackBar = new TrackBar();
@@ -78,6 +82,10 @@
             // 
             // mainSplitContainer.Panel2
             // 
+            mainSplitContainer.Panel2.Controls.Add(lightColorPanel);
+            mainSplitContainer.Panel2.Controls.Add(surfaceColorPanel);
+            mainSplitContainer.Panel2.Controls.Add(lightColorButton);
+            mainSplitContainer.Panel2.Controls.Add(surfaceColorButton);
             mainSplitContainer.Panel2.Controls.Add(animationCheckBox);
             mainSplitContainer.Panel2.Controls.Add(label7);
             mainSplitContainer.Panel2.Controls.Add(lightRotationTrackBar);
@@ -110,6 +118,42 @@
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
+            // 
+            // lightColorPanel
+            // 
+            lightColorPanel.BackColor = Color.White;
+            lightColorPanel.Location = new Point(220, 470);
+            lightColorPanel.Name = "lightColorPanel";
+            lightColorPanel.Size = new Size(23, 21);
+            lightColorPanel.TabIndex = 22;
+            // 
+            // surfaceColorPanel
+            // 
+            surfaceColorPanel.BackColor = Color.White;
+            surfaceColorPanel.Location = new Point(99, 470);
+            surfaceColorPanel.Name = "surfaceColorPanel";
+            surfaceColorPanel.Size = new Size(23, 21);
+            surfaceColorPanel.TabIndex = 21;
+            // 
+            // lightColorButton
+            // 
+            lightColorButton.Location = new Point(123, 469);
+            lightColorButton.Name = "lightColorButton";
+            lightColorButton.Size = new Size(96, 23);
+            lightColorButton.TabIndex = 20;
+            lightColorButton.Text = "Light color";
+            lightColorButton.UseVisualStyleBackColor = true;
+            lightColorButton.Click += lightColorButton_Click;
+            // 
+            // surfaceColorButton
+            // 
+            surfaceColorButton.Location = new Point(2, 469);
+            surfaceColorButton.Name = "surfaceColorButton";
+            surfaceColorButton.Size = new Size(96, 23);
+            surfaceColorButton.TabIndex = 19;
+            surfaceColorButton.Text = "Surface color";
+            surfaceColorButton.UseVisualStyleBackColor = true;
+            surfaceColorButton.Click += surfaceColorButton_Click;
             // 
             // animationCheckBox
             // 
@@ -360,5 +404,9 @@
         private Label label8;
         private TrackBar lightHeightTrackBar;
         private CheckBox animationCheckBox;
+        private Button lightColorButton;
+        private Button surfaceColorButton;
+        private Panel surfaceColorPanel;
+        private Panel lightColorPanel;
     }
 }
