@@ -1,4 +1,5 @@
-﻿using TriangleFilling.Coloring;
+﻿using System.Numerics;
+using TriangleFilling.Coloring;
 
 namespace TriangleFilling.Grid3D
 {
@@ -27,8 +28,8 @@ namespace TriangleFilling.Grid3D
 
         public void Fill(Graphics g)
         {
-            List<Vertex> vertices = new List<Vertex>() { V0, V1, V2 };
-            ShapeColorer.ColorShape(vertices, Color);
+            List<Vector2> vertices = new List<Vector2>() { V0, V1, V2 };
+            ShapeColorer.ColorShape(g, vertices, Color);
         }
     }
 }

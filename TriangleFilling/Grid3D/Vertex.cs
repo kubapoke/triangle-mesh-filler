@@ -45,5 +45,15 @@ namespace TriangleFilling.Grid3D
         {
             return new Point((int)vertex.PositionRotated.X, (int)vertex.PositionRotated.Y);
         }
+
+        public static implicit operator Vector3(Vertex vertex)
+        {
+            return new Vector3(vertex.PositionRotated.X, vertex.PositionRotated.Y, vertex.PositionRotated.Z);
+        }
+
+        public static implicit operator Vector2(Vertex vertex)
+        {
+            return new Vector2(vertex.PositionRotated.X, vertex.PositionRotated.Y);
+        }
     }
 }
