@@ -59,7 +59,7 @@ namespace TriangleFilling.Coloring
 
             for (; Y <= MaxY; Y++)
             {
-                Nodes.RemoveAll(node => node.Ymax <= Y);
+                Nodes.RemoveAll(node => (int)node.Ymax <= Y);
 
                 while (Idx < Vertices.Count && Y == (int)Vertices[Ind[Idx]].Y)
                 {
@@ -108,7 +108,7 @@ namespace TriangleFilling.Coloring
 
             for (; Y <= MaxY; Y++)
             {
-                Nodes.RemoveAll(node => node.Ymax <= Y);
+                Nodes.RemoveAll(node => (int)node.Ymax <= Y);
 
                 while (Idx < Vertices.Count && Y == (int)Vertices[Ind[Idx]].Y)
                 {
@@ -137,7 +137,7 @@ namespace TriangleFilling.Coloring
 
                 for (int i = 0; i < Nodes.Count - 1; i += 2)
                 {
-                    for (int x = (int)Nodes[i].X; i <= (int)Nodes[i + 1].X; x++)
+                    for (int x = (int)Nodes[i].X; x <= (int)Nodes[i + 1].X; x++)
                         yield return (x, Y);
                 }
                 foreach (var node in Nodes)

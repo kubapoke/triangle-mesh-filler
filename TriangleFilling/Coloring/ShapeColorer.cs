@@ -9,6 +9,7 @@ namespace TriangleFilling.Coloring
             Color _color = color ?? Color.LightGray;
 
             var pen = new Pen(_color);
+            var brush = new SolidBrush(_color);
 
             ActiveEdgeTable AET = new ActiveEdgeTable(vertices);
 
@@ -16,6 +17,10 @@ namespace TriangleFilling.Coloring
             {
                 g.DrawLine(pen, new Point(line.p1.x, line.p1.y), new Point(line.p2.x, line.p2.y));
             }
+            //foreach (var point in AET.GetPoints())
+            //{
+            //    g.FillRectangle(brush, point.x, point.y, 1, 1);
+            //}
         }
     }
 }
