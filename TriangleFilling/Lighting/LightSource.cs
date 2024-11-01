@@ -7,10 +7,10 @@ namespace TriangleFilling.Lighting
         public Vector3 Position;
         public Color Color;
 
-        public LightSource(Vector3 position, Color? color = null)
+        public LightSource(Vector3 position, Color color)
         {
             Position = position;
-            Color = color ?? Color.White;
+            Color = color;
         }
 
         public void SetPosition(Vector3 position)

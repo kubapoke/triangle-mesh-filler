@@ -66,7 +66,7 @@ namespace TriangleFilling
 
             InitializeGrid();
 
-            Light = new LightSource(new Vector3(0, 0, 0));
+            Light = new LightSource(new Vector3(0, 0, 0), Color.White);
             calculateLightPosition();
 
             Repaint();
@@ -99,7 +99,7 @@ namespace TriangleFilling
                 }
             }
 
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Color.White);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
             AnimationTask = Task.Run(() => AnimateRotation());
         }
@@ -147,7 +147,7 @@ namespace TriangleFilling
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Color.White);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
             Repaint();
         }

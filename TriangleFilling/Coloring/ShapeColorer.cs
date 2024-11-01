@@ -6,19 +6,17 @@ namespace TriangleFilling.Coloring
     internal class ShapeColorer
     {
         public static void ColorShape(Graphics g, List<Vector3> vertices, float kd, float ks, int m,
-            Color? color = null, LightSource? light = null, List<Vector3>? normals = null)
+            Color color, LightSource light, List<Vector3> normals)
         {
-            Color _color = color ?? Color.LightGray;
-
             Vector2 V0 = new Vector2(vertices[0].X, vertices[0].Y);
             Vector2 V1 = new Vector2(vertices[1].X, vertices[1].Y);
             Vector2 V2 = new Vector2(vertices[2].X, vertices[2].Y);
 
             ActiveEdgeTable AET = new ActiveEdgeTable(new List<Vector2>() { V0, V1, V2 });
 
-            if(light == null)
+            if (light == null)
             {
-                var pen = new Pen(_color);
+                var pen = new Pen(color);
                 foreach (var line in AET.GetLines())
                 {
                     g.DrawLine(pen, new Point(line.p1.x, line.p1.y), new Point(line.p2.x, line.p2.y));
@@ -26,12 +24,12 @@ namespace TriangleFilling.Coloring
             }
             else
             {
-                var brush = new SolidBrush(_color);
+                var brush = new SolidBrush(color);
                 foreach (var point in AET.GetPoints())
                 {
                     Vector3 lightPosition = light.Position;
                     Vector3 lightColor = new Vector3((float)light.Color.R / 255f, (float)light.Color.G / 255f, (float)light.Color.B / 255f);
-                    Vector3 objectColor = new Vector3((float)_color.R / 255f, (float)_color.G / 255f, (float)_color.B / 255f);
+                    Vector3 objectColor = new Vector3((float)color.R / 255f, (float)color.G / 255f, (float)color.B / 255f);
                     Vector3 coords = CalculateBarycentricCoords(new Vector2(point.x, point.y), V0, V1, V2);
 
                     Vector3 N = coords[0] * normals[0] + coords[1] * normals[1] + coords[2] * normals[2];

@@ -12,17 +12,17 @@ namespace TriangleFilling.Grid3D
         private float Kd, Ks;
         private int M;
 
-        internal Grid(Vector3[,] V, float width, float heigth, int precision, float? kd = null, float? ks = null, int? m = null, Color? color = null)
+        internal Grid(Vector3[,] V, float width, float heigth, int precision, float kd, float ks, int m, Color color)
         {
             Size = Math.Min(width, heigth);
             float step = 1f / (float)(precision);
 
             AddVertices(V, precision, step);
             AddTrinagles(precision);
-            Color = color ?? Color.White;
-            Kd = kd ?? 0.5f;
-            Ks = ks ?? 0.5f;
-            M = m ?? 50;
+            Color = color; ;
+            Kd = kd;
+            Ks = ks;
+            M = m;
         }
 
         private void AddVertices(Vector3[,] V, int precision, float step)
@@ -156,7 +156,7 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Draw(Graphics g, LightSource? light = null, bool shouldDrawOutline = true, bool shouldDrawFill = true)
+        public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true, bool shouldDrawFill = true)
         {
             foreach (var triangle in Triangles)
             {
