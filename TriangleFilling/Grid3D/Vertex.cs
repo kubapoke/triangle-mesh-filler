@@ -31,14 +31,17 @@ namespace TriangleFilling.Grid3D
             float sinAlpha = (float)Math.Sin(rotationAlpha);
             float cosBeta = (float)Math.Cos(rotationBeta);
             float sinBeta = (float)Math.Sin(rotationBeta);
+            float x1, y1, z1;
 
-            // alpha rotation
-            vectorRotated.X = vector.X * cosBeta - vector.Y * sinBeta;
-            vectorRotated.Y = vector.X * sinBeta + vector.Y * cosBeta;
+            // alpha rotation (Z axis)
+            x1 = vector.X * cosAlpha - vector.Y * sinAlpha;
+            y1 = vector.X * sinAlpha + vector.Y * cosAlpha;
+            z1 = vector.Z;
 
-            // beta rotation
-            vectorRotated.Y = vector.Y * cosAlpha - vector.Z * sinAlpha;
-            vectorRotated.Z = vector.Y * cosAlpha + vector.Z * sinAlpha;
+            // beta rotation (X axis)
+            vectorRotated.X = x1;
+            vectorRotated.Y = y1 * cosBeta - z1 * sinBeta;
+            vectorRotated.Z = y1 * sinBeta + z1 * cosBeta;
         }
 
         public static implicit operator Point(Vertex vertex)
