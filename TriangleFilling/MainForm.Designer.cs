@@ -30,6 +30,7 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            animationCheckBox = new CheckBox();
             label7 = new Label();
             lightRotationTrackBar = new TrackBar();
             label8 = new Label();
@@ -77,6 +78,7 @@
             // 
             // mainSplitContainer.Panel2
             // 
+            mainSplitContainer.Panel2.Controls.Add(animationCheckBox);
             mainSplitContainer.Panel2.Controls.Add(label7);
             mainSplitContainer.Panel2.Controls.Add(lightRotationTrackBar);
             mainSplitContainer.Panel2.Controls.Add(label8);
@@ -109,6 +111,19 @@
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
             // 
+            // animationCheckBox
+            // 
+            animationCheckBox.AutoSize = true;
+            animationCheckBox.Checked = true;
+            animationCheckBox.CheckState = CheckState.Checked;
+            animationCheckBox.Location = new Point(21, 445);
+            animationCheckBox.Name = "animationCheckBox";
+            animationCheckBox.Size = new Size(96, 19);
+            animationCheckBox.TabIndex = 18;
+            animationCheckBox.Text = "animate light";
+            animationCheckBox.UseVisualStyleBackColor = true;
+            animationCheckBox.CheckedChanged += animationCheckBox_CheckedChanged;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -120,6 +135,7 @@
             // 
             // lightRotationTrackBar
             // 
+            lightRotationTrackBar.Enabled = false;
             lightRotationTrackBar.Location = new Point(69, 369);
             lightRotationTrackBar.Maximum = 200;
             lightRotationTrackBar.Name = "lightRotationTrackBar";
@@ -140,13 +156,13 @@
             // lightHeightTrackBar
             // 
             lightHeightTrackBar.Location = new Point(69, 318);
-            lightHeightTrackBar.Maximum = 1000;
-            lightHeightTrackBar.Minimum = 300;
+            lightHeightTrackBar.Maximum = 750;
+            lightHeightTrackBar.Minimum = 250;
             lightHeightTrackBar.Name = "lightHeightTrackBar";
             lightHeightTrackBar.Size = new Size(174, 45);
             lightHeightTrackBar.TabIndex = 14;
-            lightHeightTrackBar.TickFrequency = 70;
-            lightHeightTrackBar.Value = 500;
+            lightHeightTrackBar.TickFrequency = 50;
+            lightHeightTrackBar.Value = 600;
             lightHeightTrackBar.Scroll += lightHeightTrackBar_Scroll;
             // 
             // label4
@@ -167,7 +183,7 @@
             mTrackBar.Size = new Size(174, 45);
             mTrackBar.TabIndex = 12;
             mTrackBar.TickFrequency = 10;
-            mTrackBar.Value = 50;
+            mTrackBar.Value = 20;
             mTrackBar.Scroll += mTrackBar_Scroll;
             // 
             // label5
@@ -187,7 +203,7 @@
             ksTrackBar.Size = new Size(174, 45);
             ksTrackBar.TabIndex = 10;
             ksTrackBar.TickFrequency = 9;
-            ksTrackBar.Value = 50;
+            ksTrackBar.Value = 30;
             ksTrackBar.Scroll += ksTrackBar_Scroll;
             // 
             // label6
@@ -207,7 +223,7 @@
             kdTrackBar.Size = new Size(174, 45);
             kdTrackBar.TabIndex = 8;
             kdTrackBar.TickFrequency = 10;
-            kdTrackBar.Value = 50;
+            kdTrackBar.Value = 70;
             kdTrackBar.Scroll += kdTrackBar_Scroll;
             // 
             // fillCheckBox
@@ -343,5 +359,6 @@
         private TrackBar lightRotationTrackBar;
         private Label label8;
         private TrackBar lightHeightTrackBar;
+        private CheckBox animationCheckBox;
     }
 }

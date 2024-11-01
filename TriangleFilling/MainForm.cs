@@ -10,6 +10,8 @@ namespace TriangleFilling
         private Grid Grid;
         private Vector3[,] Coordinates = new Vector3[4, 4];
         private LightSource Light;
+        private Task AnimationTask;
+        private bool ShouldAnimate = true;
         private int Precision
         {
             get
@@ -99,6 +101,7 @@ namespace TriangleFilling
 
             Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
+            AnimationTask = Task.Run(() => AnimateRotation());
         }
 
         private void mainPictureBox_Paint(object sender, PaintEventArgs e)
@@ -115,8 +118,8 @@ namespace TriangleFilling
         {
             if (Light == null) return;
 
-            float x = (float)Math.Cos((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 250f;
-            float y = (float)Math.Sin((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 250f;
+            float x = (float)Math.Cos((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 500f;
+            float y = (float)Math.Sin((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 500f;
             float z = lightHeightTrackBar.Value;
 
             Light.SetPosition(new Vector3(x, y, z));
@@ -125,6 +128,21 @@ namespace TriangleFilling
         private void Repaint()
         {
             mainPictureBox.Invalidate();
+        }
+
+        private void AnimateRotation()
+        {
+            while (ShouldAnimate)
+            {
+                Thread.Sleep(20);
+
+                lightRotationTrackBar.Value++;
+                if (lightRotationTrackBar.Value >= lightRotationTrackBar.Maximum)
+                    lightRotationTrackBar.Value = lightRotationTrackBar.Minimum;
+
+                calculateLightPosition();
+                Repaint();
+            }
         }
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
@@ -194,6 +212,22 @@ namespace TriangleFilling
         {
             calculateLightPosition();
             Repaint();
+        }
+
+        private void animationCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (animationCheckBox.Checked)
+            {
+                ShouldAnimate = true;
+                lightRotationTrackBar.Enabled = false;
+                AnimationTask = Task.Run(() => AnimateRotation());
+            }
+            else
+            {
+                ShouldAnimate = false;
+                lightRotationTrackBar.Enabled = true;
+                AnimationTask.Wait();
+            }
         }
     }
 }
