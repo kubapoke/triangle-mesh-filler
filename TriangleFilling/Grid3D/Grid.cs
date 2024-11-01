@@ -57,8 +57,6 @@ namespace TriangleFilling.Grid3D
                         Triangles.Add(new Triangle(Vertices[i + j * precision], Vertices[i + j * precision + 1], Vertices[i + j * precision - precision + 1]));
                         Triangles[Triangles.Count - 1].Color = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)); // reamove later
                     }
-
-
                 }
             }
         }
@@ -101,7 +99,7 @@ namespace TriangleFilling.Grid3D
                     res += (V[i + 1, j] - V[i, j]) * Bin * Bjm;
                 }
             }
-            return 3 * res;
+            return Vector3.Normalize(3 * res);
         }
 
         private Vector3 CalculateTangentV(float u, float v, Vector3[,] V)
@@ -118,7 +116,7 @@ namespace TriangleFilling.Grid3D
                     res += (V[i, j + 1] - V[i, j]) * Bin * Bjm;
                 }
             }
-            return 3 * res;
+            return Vector3.Normalize(3 * res);
         }
 
         private float Bernstein(int i, int n, float t)
@@ -153,12 +151,14 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Draw(Graphics g)
+        public void Draw(Graphics g, bool shouldDrawOutline = true, bool shouldDrawFill = true)
         {
             foreach (var triangle in Triangles)
             {
-                triangle.Fill(g);
-                triangle.Draw(g);
+                if (shouldDrawFill)
+                    triangle.Fill(g);
+                if (shouldDrawOutline)
+                    triangle.Draw(g);
             }
         }
     }

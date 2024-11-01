@@ -30,12 +30,14 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            outlineCheckbox = new CheckBox();
             label3 = new Label();
             betaDegreeTrackBar = new TrackBar();
             label2 = new Label();
             alphaDegreeTrackBar = new TrackBar();
             label1 = new Label();
             precisionTrackBar = new TrackBar();
+            fillCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -60,6 +62,8 @@
             // 
             // mainSplitContainer.Panel2
             // 
+            mainSplitContainer.Panel2.Controls.Add(fillCheckBox);
+            mainSplitContainer.Panel2.Controls.Add(outlineCheckbox);
             mainSplitContainer.Panel2.Controls.Add(label3);
             mainSplitContainer.Panel2.Controls.Add(betaDegreeTrackBar);
             mainSplitContainer.Panel2.Controls.Add(label2);
@@ -79,6 +83,19 @@
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
+            // 
+            // outlineCheckbox
+            // 
+            outlineCheckbox.AutoSize = true;
+            outlineCheckbox.Checked = true;
+            outlineCheckbox.CheckState = CheckState.Checked;
+            outlineCheckbox.Location = new Point(21, 165);
+            outlineCheckbox.Name = "outlineCheckbox";
+            outlineCheckbox.Size = new Size(94, 19);
+            outlineCheckbox.TabIndex = 6;
+            outlineCheckbox.Text = "show outline";
+            outlineCheckbox.UseVisualStyleBackColor = true;
+            outlineCheckbox.CheckedChanged += outlineCheckBox_CheckedChanged;
             // 
             // label3
             // 
@@ -140,6 +157,19 @@
             precisionTrackBar.Value = 16;
             precisionTrackBar.Scroll += precisionTrackBar_Scroll;
             // 
+            // fillCheckBox
+            // 
+            fillCheckBox.AutoSize = true;
+            fillCheckBox.Checked = true;
+            fillCheckBox.CheckState = CheckState.Checked;
+            fillCheckBox.Location = new Point(144, 165);
+            fillCheckBox.Name = "fillCheckBox";
+            fillCheckBox.Size = new Size(70, 19);
+            fillCheckBox.TabIndex = 7;
+            fillCheckBox.Text = "show fill";
+            fillCheckBox.UseVisualStyleBackColor = true;
+            fillCheckBox.CheckedChanged += fillCheckBox_CheckedChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -171,5 +201,7 @@
         private TrackBar betaDegreeTrackBar;
         private Label label2;
         private TrackBar alphaDegreeTrackBar;
+        private CheckBox outlineCheckbox;
+        private CheckBox fillCheckBox;
     }
 }

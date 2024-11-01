@@ -15,6 +15,23 @@ namespace TriangleFilling
                 return precisionTrackBar.Value;
             }
         }
+
+        private bool ShouldDrawOutline
+        {
+            get
+            {
+                return outlineCheckbox.Checked;
+            }
+        }
+
+        private bool ShouldDrawFill
+        {
+            get
+            {
+                return fillCheckBox.Checked;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -59,7 +76,7 @@ namespace TriangleFilling
             g.ScaleTransform(1, -1);
             g.TranslateTransform(mainPictureBox.Width / 2, -mainPictureBox.Height / 2);
 
-            Grid.Draw(e.Graphics);
+            Grid.Draw(e.Graphics, ShouldDrawOutline, ShouldDrawFill);
         }
 
         private void Repaint()
@@ -83,6 +100,26 @@ namespace TriangleFilling
         private void betaDegreeTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid.Rotate(null, betaDegreeTrackBar.Value);
+            Repaint();
+        }
+
+        private void fillCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!fillCheckBox.Checked)
+            {
+                outlineCheckbox.Checked = true;
+            }
+
+            Repaint();
+        }
+
+        private void outlineCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!outlineCheckbox.Checked)
+            {
+                fillCheckBox.Checked = true;
+            }
+
             Repaint();
         }
     }
