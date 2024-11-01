@@ -167,24 +167,6 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public async Task DrawAsync(Graphics g, LightSource light, bool shouldDrawOutline = true, bool shouldDrawFill = true)
-        {
-            await Task.Run(() =>
-            {
-                int triangleCount = Triangles.Count;
-
-                Parallel.For(0, triangleCount, i =>
-                {
-                    var triangle = Triangles[i];
-
-                    if (shouldDrawFill)
-                        triangle.Fill(g, Color, Kd, Ks, M, light);
-                    if (shouldDrawOutline)
-                        triangle.Draw(g);
-                });
-            });
-        }
-
         public void setKd(float kd)
         {
             Kd = kd;
