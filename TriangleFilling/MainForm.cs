@@ -92,7 +92,7 @@ namespace TriangleFilling
                             return;
                         }
 
-                        string[] parts = line.Split(',');
+                        string[] parts = line.Split(' ');
                         float x = float.Parse(parts[0], CultureInfo.InvariantCulture) * multiplier;
                         float y = float.Parse(parts[1], CultureInfo.InvariantCulture) * multiplier;
                         float z = float.Parse(parts[2], CultureInfo.InvariantCulture) * multiplier;
