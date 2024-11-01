@@ -96,7 +96,7 @@ namespace TriangleFilling.Grid3D
                     res += (V[i + 1, j] - V[i, j]) * Bin * Bjm;
                 }
             }
-            return Vector3.Normalize(3 * res);
+            return 3 * res;
         }
 
         private Vector3 CalculateTangentV(float u, float v, Vector3[,] V)
@@ -113,7 +113,7 @@ namespace TriangleFilling.Grid3D
                     res += (V[i, j + 1] - V[i, j]) * Bin * Bjm;
                 }
             }
-            return Vector3.Normalize(3 * res);
+            return 3 * res;
         }
 
         private float Bernstein(int i, int n, float t)

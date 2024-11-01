@@ -40,7 +40,7 @@ namespace TriangleFilling
 
             InitializeGrid();
 
-            Light = new LightSource(new Vector3(0, 0, 300));
+            Light = new LightSource(new Vector3(0, 0, 500));
         }
 
         private void InitializeGrid()
