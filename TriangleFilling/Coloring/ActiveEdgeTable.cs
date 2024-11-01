@@ -86,6 +86,8 @@ namespace TriangleFilling.Coloring
                     Idx++;
                 }
 
+                Nodes.Sort((node1, node2) => node1.X.CompareTo(node2.X));
+
                 for (int i = 0; i < Nodes.Count - 1; i += 2)
                 {
                     yield return (((int)Nodes[i].X, Y), ((int)Nodes[i + 1].X, Y));
@@ -94,8 +96,6 @@ namespace TriangleFilling.Coloring
                 {
                     node.MoveUp();
                 }
-
-                Nodes.Sort((node1, node2) => node1.X.CompareTo(node2.X));
             }
 
             yield break;
@@ -135,6 +135,8 @@ namespace TriangleFilling.Coloring
                     Idx++;
                 }
 
+                Nodes.Sort((node1, node2) => node1.X.CompareTo(node2.X));
+
                 for (int i = 0; i < Nodes.Count - 1; i += 2)
                 {
                     for (int x = (int)Nodes[i].X; x <= (int)Nodes[i + 1].X; x++)
@@ -143,9 +145,7 @@ namespace TriangleFilling.Coloring
                 foreach (var node in Nodes)
                 {
                     node.MoveUp();
-                }
-
-                Nodes.Sort((node1, node2) => node1.X.CompareTo(node2.X));
+                }     
             }
 
             yield break;
