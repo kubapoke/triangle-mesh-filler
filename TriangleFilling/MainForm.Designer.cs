@@ -30,6 +30,7 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            fillCheckBox = new CheckBox();
             outlineCheckbox = new CheckBox();
             label3 = new Label();
             betaDegreeTrackBar = new TrackBar();
@@ -37,7 +38,6 @@
             alphaDegreeTrackBar = new TrackBar();
             label1 = new Label();
             precisionTrackBar = new TrackBar();
-            fillCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -84,6 +84,19 @@
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
             // 
+            // fillCheckBox
+            // 
+            fillCheckBox.AutoSize = true;
+            fillCheckBox.Checked = true;
+            fillCheckBox.CheckState = CheckState.Checked;
+            fillCheckBox.Location = new Point(144, 165);
+            fillCheckBox.Name = "fillCheckBox";
+            fillCheckBox.Size = new Size(70, 19);
+            fillCheckBox.TabIndex = 7;
+            fillCheckBox.Text = "show fill";
+            fillCheckBox.UseVisualStyleBackColor = true;
+            fillCheckBox.CheckedChanged += fillCheckBox_CheckedChanged;
+            // 
             // outlineCheckbox
             // 
             outlineCheckbox.AutoSize = true;
@@ -109,7 +122,6 @@
             // betaDegreeTrackBar
             // 
             betaDegreeTrackBar.Location = new Point(69, 114);
-            betaDegreeTrackBar.Minimum = -10;
             betaDegreeTrackBar.Name = "betaDegreeTrackBar";
             betaDegreeTrackBar.Size = new Size(174, 45);
             betaDegreeTrackBar.TabIndex = 4;
@@ -156,19 +168,6 @@
             precisionTrackBar.TickFrequency = 16;
             precisionTrackBar.Value = 16;
             precisionTrackBar.Scroll += precisionTrackBar_Scroll;
-            // 
-            // fillCheckBox
-            // 
-            fillCheckBox.AutoSize = true;
-            fillCheckBox.Checked = true;
-            fillCheckBox.CheckState = CheckState.Checked;
-            fillCheckBox.Location = new Point(144, 165);
-            fillCheckBox.Name = "fillCheckBox";
-            fillCheckBox.Size = new Size(70, 19);
-            fillCheckBox.TabIndex = 7;
-            fillCheckBox.Text = "show fill";
-            fillCheckBox.UseVisualStyleBackColor = true;
-            fillCheckBox.CheckedChanged += fillCheckBox_CheckedChanged;
             // 
             // MainForm
             // 
