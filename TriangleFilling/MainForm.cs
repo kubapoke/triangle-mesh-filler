@@ -71,6 +71,7 @@ namespace TriangleFilling
             }
 
             Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision);
+            Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
         }
 
         private void mainPictureBox_Paint(object sender, PaintEventArgs e)
