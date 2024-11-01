@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using TriangleFilling.Coloring;
+using TriangleFilling.Lighting;
 
 namespace TriangleFilling.Grid3D
 {
@@ -27,10 +28,13 @@ namespace TriangleFilling.Grid3D
             g.DrawLine(p, V2, V0);
         }
 
-        public void Fill(Graphics g)
+        public void Fill(Graphics g, LightSource? light = null)
         {
-            List<Vector2> vertices = new List<Vector2>() { V0, V1, V2 };
-            ShapeColorer.ColorShape(g, vertices, Color);
+            List<Vector3> vertices = new List<Vector3>() { V0, V1, V2 };
+            List<Vector3> normals = new List<Vector3>() { V0.NormalRotated, V1.NormalRotated, V2.NormalRotated };
+            List<Vector3> tangentsU = new List<Vector3>() { V0.TangentURotated, V1.TangentURotated, V2.TangentURotated };
+            List<Vector3> tangentsV = new List<Vector3>() { V0.TangentVRotated, V1.TangentVRotated, V2.TangentVRotated };
+            ShapeColorer.ColorShape(g, vertices, Color, light, normals, tangentsU, tangentsV);
         }
     }
 }

@@ -5,13 +5,18 @@ namespace TriangleFilling.Coloring
 {
     internal class ShapeColorer
     {
-        public static void ColorShape(Graphics g, List<Vector2> vertices, Color? color = null, LightSource? lightSource = null)
+        public static void ColorShape(Graphics g, List<Vector3> vertices, Color? color = null, LightSource? light = null,
+            List<Vector3>? normals = null, List<Vector3>? tangentsU = null, List<Vector3>? tangentsV = null)
         {
             Color _color = color ?? Color.LightGray;
 
-            ActiveEdgeTable AET = new ActiveEdgeTable(vertices);
+            Vector2 V0 = new Vector2(vertices[0].X, vertices[0].Y);
+            Vector2 V1 = new Vector2(vertices[1].X, vertices[1].Y);
+            Vector2 V2 = new Vector2(vertices[2].X, vertices[2].Y);
 
-            if(lightSource == null)
+            ActiveEdgeTable AET = new ActiveEdgeTable(new List<Vector2>() { V0, V1, V2 });
+
+            if(light == null)
             {
                 var pen = new Pen(_color);
                 foreach (var line in AET.GetLines())

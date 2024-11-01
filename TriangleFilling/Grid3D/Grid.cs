@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using TriangleFilling.Lighting;
 
 namespace TriangleFilling.Grid3D
 {
@@ -147,12 +148,12 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Draw(Graphics g, bool shouldDrawOutline = true, bool shouldDrawFill = true)
+        public void Draw(Graphics g, LightSource? light = null, bool shouldDrawOutline = true, bool shouldDrawFill = true)
         {
             foreach (var triangle in Triangles)
             {
                 if (shouldDrawFill)
-                    triangle.Fill(g);
+                    triangle.Fill(g, light);
                 if (shouldDrawOutline)
                     triangle.Draw(g);
             }

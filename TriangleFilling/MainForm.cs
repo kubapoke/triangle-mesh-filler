@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Numerics;
 using TriangleFilling.Grid3D;
+using TriangleFilling.Lighting;
 
 namespace TriangleFilling
 {
@@ -8,6 +9,7 @@ namespace TriangleFilling
     {
         private Grid Grid;
         private Vector3[,] Coordinates = new Vector3[4, 4];
+        private LightSource Light;
         private int Precision
         {
             get
@@ -37,6 +39,8 @@ namespace TriangleFilling
             InitializeComponent();
 
             InitializeGrid();
+
+            Light = new LightSource(new Vector3(0, 0, 300));
         }
 
         private void InitializeGrid()
@@ -76,7 +80,7 @@ namespace TriangleFilling
             g.ScaleTransform(1, -1);
             g.TranslateTransform(mainPictureBox.Width / 2, -mainPictureBox.Height / 2);
 
-            Grid.Draw(e.Graphics, ShouldDrawOutline, ShouldDrawFill);
+            Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill);
         }
 
         private void Repaint()
