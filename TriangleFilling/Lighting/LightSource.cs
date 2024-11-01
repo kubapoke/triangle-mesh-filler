@@ -12,5 +12,10 @@ namespace TriangleFilling.Lighting
             Position = position;
             Color = color ?? Color.White;
         }
+
+        public void SetPosition(Vector3 position)
+        {
+            Position = position;
+        }
     }
 }

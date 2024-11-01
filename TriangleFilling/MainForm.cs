@@ -40,7 +40,10 @@ namespace TriangleFilling
 
             InitializeGrid();
 
-            Light = new LightSource(new Vector3(0, 0, 500));
+            Light = new LightSource(new Vector3(0, 0, 0));
+            calculateLightPosition();
+
+            Repaint();
         }
 
         private void InitializeGrid()
@@ -84,6 +87,17 @@ namespace TriangleFilling
             Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill);
         }
 
+        private void calculateLightPosition()
+        {
+            if (Light == null) return;
+
+            float x = (float)Math.Cos((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 250f;
+            float y = (float)Math.Sin((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 250f;
+            float z = lightHeightTrackBar.Value;
+
+            Light.SetPosition(new Vector3(x, y, z));
+        }
+
         private void Repaint()
         {
             mainPictureBox.Invalidate();
@@ -125,6 +139,33 @@ namespace TriangleFilling
                 fillCheckBox.Checked = true;
             }
 
+            Repaint();
+        }
+
+        private void kdTrackBar_Scroll(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+        private void ksTrackBar_Scroll(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+        private void mTrackBar_Scroll(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+        private void lightHeightTrackBar_Scroll(object sender, EventArgs e)
+        {
+            calculateLightPosition();
+            Repaint();
+        }
+
+        private void lightRotationTrackBar_Scroll(object sender, EventArgs e)
+        {
+            calculateLightPosition();
             Repaint();
         }
     }

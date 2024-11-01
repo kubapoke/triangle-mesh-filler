@@ -30,6 +30,16 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            label7 = new Label();
+            lightRotationTrackBar = new TrackBar();
+            label8 = new Label();
+            lightHeightTrackBar = new TrackBar();
+            label4 = new Label();
+            mTrackBar = new TrackBar();
+            label5 = new Label();
+            ksTrackBar = new TrackBar();
+            label6 = new Label();
+            kdTrackBar = new TrackBar();
             fillCheckBox = new CheckBox();
             outlineCheckbox = new CheckBox();
             label3 = new Label();
@@ -38,29 +48,19 @@
             alphaDegreeTrackBar = new TrackBar();
             label1 = new Label();
             precisionTrackBar = new TrackBar();
-            label4 = new Label();
-            mTrackBar = new TrackBar();
-            label5 = new Label();
-            ksTrackBar = new TrackBar();
-            label6 = new Label();
-            kdTrackBar = new TrackBar();
-            label7 = new Label();
-            lightRotationTrackBar = new TrackBar();
-            label8 = new Label();
-            lightHeightTrackBar = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
             mainSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainPictureBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)betaDegreeTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lightRotationTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lightHeightTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ksTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kdTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)lightRotationTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)lightHeightTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)betaDegreeTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).BeginInit();
             SuspendLayout();
             // 
             // mainSplitContainer
@@ -95,7 +95,6 @@
             mainSplitContainer.Panel2.Controls.Add(alphaDegreeTrackBar);
             mainSplitContainer.Panel2.Controls.Add(label1);
             mainSplitContainer.Panel2.Controls.Add(precisionTrackBar);
-            mainSplitContainer.Panel2.Paint += this.mainSplitContainer_Panel2_Paint;
             mainSplitContainer.Size = new Size(800, 521);
             mainSplitContainer.SplitterDistance = 550;
             mainSplitContainer.TabIndex = 0;
@@ -109,6 +108,107 @@
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(10, 372);
+            label7.Name = "label7";
+            label7.Size = new Size(52, 15);
+            label7.TabIndex = 17;
+            label7.Text = "light rot:";
+            // 
+            // lightRotationTrackBar
+            // 
+            lightRotationTrackBar.Location = new Point(69, 369);
+            lightRotationTrackBar.Maximum = 200;
+            lightRotationTrackBar.Name = "lightRotationTrackBar";
+            lightRotationTrackBar.Size = new Size(174, 45);
+            lightRotationTrackBar.TabIndex = 16;
+            lightRotationTrackBar.TickFrequency = 20;
+            lightRotationTrackBar.Scroll += lightRotationTrackBar_Scroll;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(10, 321);
+            label8.Name = "label8";
+            label8.Size = new Size(48, 15);
+            label8.TabIndex = 15;
+            label8.Text = "light ht:";
+            // 
+            // lightHeightTrackBar
+            // 
+            lightHeightTrackBar.Location = new Point(69, 318);
+            lightHeightTrackBar.Maximum = 1000;
+            lightHeightTrackBar.Minimum = 300;
+            lightHeightTrackBar.Name = "lightHeightTrackBar";
+            lightHeightTrackBar.Size = new Size(174, 45);
+            lightHeightTrackBar.TabIndex = 14;
+            lightHeightTrackBar.TickFrequency = 70;
+            lightHeightTrackBar.Value = 500;
+            lightHeightTrackBar.Scroll += lightHeightTrackBar_Scroll;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(10, 270);
+            label4.Name = "label4";
+            label4.Size = new Size(21, 15);
+            label4.TabIndex = 13;
+            label4.Text = "m:";
+            // 
+            // mTrackBar
+            // 
+            mTrackBar.Location = new Point(69, 267);
+            mTrackBar.Maximum = 100;
+            mTrackBar.Minimum = 1;
+            mTrackBar.Name = "mTrackBar";
+            mTrackBar.Size = new Size(174, 45);
+            mTrackBar.TabIndex = 12;
+            mTrackBar.TickFrequency = 10;
+            mTrackBar.Value = 50;
+            mTrackBar.Scroll += mTrackBar_Scroll;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(10, 219);
+            label5.Name = "label5";
+            label5.Size = new Size(21, 15);
+            label5.TabIndex = 11;
+            label5.Text = "ks:";
+            // 
+            // ksTrackBar
+            // 
+            ksTrackBar.Location = new Point(69, 216);
+            ksTrackBar.Maximum = 100;
+            ksTrackBar.Name = "ksTrackBar";
+            ksTrackBar.Size = new Size(174, 45);
+            ksTrackBar.TabIndex = 10;
+            ksTrackBar.TickFrequency = 9;
+            ksTrackBar.Value = 50;
+            ksTrackBar.Scroll += ksTrackBar_Scroll;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(10, 168);
+            label6.Name = "label6";
+            label6.Size = new Size(23, 15);
+            label6.TabIndex = 9;
+            label6.Text = "kd:";
+            // 
+            // kdTrackBar
+            // 
+            kdTrackBar.Location = new Point(69, 165);
+            kdTrackBar.Maximum = 100;
+            kdTrackBar.Name = "kdTrackBar";
+            kdTrackBar.Size = new Size(174, 45);
+            kdTrackBar.TabIndex = 8;
+            kdTrackBar.TickFrequency = 10;
+            kdTrackBar.Value = 50;
+            kdTrackBar.Scroll += kdTrackBar_Scroll;
             // 
             // fillCheckBox
             // 
@@ -195,102 +295,6 @@
             precisionTrackBar.Value = 16;
             precisionTrackBar.Scroll += precisionTrackBar_Scroll;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(10, 270);
-            label4.Name = "label4";
-            label4.Size = new Size(21, 15);
-            label4.TabIndex = 13;
-            label4.Text = "m:";
-            // 
-            // mTrackBar
-            // 
-            mTrackBar.Location = new Point(69, 267);
-            mTrackBar.Maximum = 100;
-            mTrackBar.Minimum = 1;
-            mTrackBar.Name = "mTrackBar";
-            mTrackBar.Size = new Size(174, 45);
-            mTrackBar.TabIndex = 12;
-            mTrackBar.TickFrequency = 10;
-            mTrackBar.Value = 50;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(10, 219);
-            label5.Name = "label5";
-            label5.Size = new Size(21, 15);
-            label5.TabIndex = 11;
-            label5.Text = "ks:";
-            // 
-            // ksTrackBar
-            // 
-            ksTrackBar.Location = new Point(69, 216);
-            ksTrackBar.Maximum = 100;
-            ksTrackBar.Name = "ksTrackBar";
-            ksTrackBar.Size = new Size(174, 45);
-            ksTrackBar.TabIndex = 10;
-            ksTrackBar.TickFrequency = 9;
-            ksTrackBar.Value = 50;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(10, 168);
-            label6.Name = "label6";
-            label6.Size = new Size(23, 15);
-            label6.TabIndex = 9;
-            label6.Text = "kd:";
-            // 
-            // kdTrackBar
-            // 
-            kdTrackBar.Location = new Point(69, 165);
-            kdTrackBar.Maximum = 100;
-            kdTrackBar.Name = "kdTrackBar";
-            kdTrackBar.Size = new Size(174, 45);
-            kdTrackBar.TabIndex = 8;
-            kdTrackBar.TickFrequency = 10;
-            kdTrackBar.Value = 50;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(10, 372);
-            label7.Name = "label7";
-            label7.Size = new Size(52, 15);
-            label7.TabIndex = 17;
-            label7.Text = "light rot:";
-            // 
-            // lightRotationTrackBar
-            // 
-            lightRotationTrackBar.Location = new Point(69, 369);
-            lightRotationTrackBar.Maximum = 200;
-            lightRotationTrackBar.Name = "lightRotationTrackBar";
-            lightRotationTrackBar.Size = new Size(174, 45);
-            lightRotationTrackBar.TabIndex = 16;
-            lightRotationTrackBar.TickFrequency = 20;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(10, 321);
-            label8.Name = "label8";
-            label8.Size = new Size(48, 15);
-            label8.TabIndex = 15;
-            label8.Text = "light ht:";
-            // 
-            // lightHeightTrackBar
-            // 
-            lightHeightTrackBar.Location = new Point(69, 318);
-            lightHeightTrackBar.Maximum = 1000;
-            lightHeightTrackBar.Minimum = 300;
-            lightHeightTrackBar.Name = "lightHeightTrackBar";
-            lightHeightTrackBar.Size = new Size(174, 45);
-            lightHeightTrackBar.TabIndex = 14;
-            lightHeightTrackBar.TickFrequency = 70;
-            lightHeightTrackBar.Value = 500;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -306,14 +310,14 @@
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).EndInit();
             mainSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)mainPictureBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)betaDegreeTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lightRotationTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lightHeightTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)mTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)ksTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)kdTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)lightRotationTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)lightHeightTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)betaDegreeTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)alphaDegreeTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)precisionTrackBar).EndInit();
             ResumeLayout(false);
         }
 
