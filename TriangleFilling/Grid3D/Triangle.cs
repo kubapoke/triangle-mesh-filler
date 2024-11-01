@@ -10,11 +10,12 @@ namespace TriangleFilling.Grid3D
         public Vertex V2;
         public Color Color;
 
-        public Triangle(Vertex v0, Vertex v1, Vertex v2)
+        public Triangle(Vertex v0, Vertex v1, Vertex v2, Color? color = null)
         {
             V0 = v0;
             V1 = v1;
             V2 = v2;
+            Color = color ?? Color.LightGray;
         }
 
         public void Draw(Graphics g)

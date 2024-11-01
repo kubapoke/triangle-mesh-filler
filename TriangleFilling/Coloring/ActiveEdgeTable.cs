@@ -54,6 +54,9 @@ namespace TriangleFilling.Coloring
 
         public IEnumerable<((int x, int y) p1, (int x, int y) p2)> GetLines()
         {
+            Y = (int)Vertices[Ind[0]].Y;
+            Idx = 0;
+
             for (; Y <= MaxY; Y++)
             {
                 Nodes.RemoveAll(node => node.Ymax <= Y);
@@ -69,12 +72,12 @@ namespace TriangleFilling.Coloring
                     float NextX = Next.X;
                     float PrevX = Prev.X;
 
-                    if (NextY > Y)
+                    if ((int)NextY > Y)
                     {
                         AETNode node = new AETNode((int)NextY, X, (NextX - X) / (NextY - Y));
                         Nodes.Add(node);
                     }
-                    if (PrevY > Y)
+                    if ((int)PrevY > Y)
                     {
                         AETNode node = new AETNode((int)PrevY, X, (PrevX - X) / (PrevY - Y));
                         Nodes.Add(node);
@@ -86,6 +89,56 @@ namespace TriangleFilling.Coloring
                 for (int i = 0; i < Nodes.Count - 1; i += 2)
                 {
                     yield return (((int)Nodes[i].X, Y), ((int)Nodes[i + 1].X, Y));
+                }
+                foreach (var node in Nodes)
+                {
+                    node.MoveUp();
+                }
+
+                Nodes.Sort((node1, node2) => node1.X.CompareTo(node2.X));
+            }
+
+            yield break;
+        }
+
+        public IEnumerable<(int x, int y)> GetPoints()
+        {
+            Y = (int)Vertices[Ind[0]].Y;
+            Idx = 0;
+
+            for (; Y <= MaxY; Y++)
+            {
+                Nodes.RemoveAll(node => node.Ymax <= Y);
+
+                while (Idx < Vertices.Count && Y == (int)Vertices[Ind[Idx]].Y)
+                {
+                    Vector2 Next = Vertices[(Ind[Idx] + 1) % Vertices.Count];
+                    Vector2 Prev = Vertices[(Ind[Idx] - 1 + Vertices.Count) % Vertices.Count];
+
+                    float X = Vertices[Ind[Idx]].X;
+                    float NextY = Next.Y;
+                    float PrevY = Prev.Y;
+                    float NextX = Next.X;
+                    float PrevX = Prev.X;
+
+                    if ((int)NextY > Y)
+                    {
+                        AETNode node = new AETNode((int)NextY, X, (NextX - X) / (NextY - Y));
+                        Nodes.Add(node);
+                    }
+                    if ((int)PrevY > Y)
+                    {
+                        AETNode node = new AETNode((int)PrevY, X, (PrevX - X) / (PrevY - Y));
+                        Nodes.Add(node);
+                    }
+
+                    Idx++;
+                }
+
+                for (int i = 0; i < Nodes.Count - 1; i += 2)
+                {
+                    for (int x = (int)Nodes[i].X; i <= (int)Nodes[i + 1].X; x++)
+                        yield return (x, Y);
                 }
                 foreach (var node in Nodes)
                 {
