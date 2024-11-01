@@ -30,7 +30,7 @@ namespace TriangleFilling.Grid3D
         {
             List<Vector3> vertices = new List<Vector3>() { V0, V1, V2 };
             List<Vector3> normals = new List<Vector3>() { V0.NormalRotated, V1.NormalRotated, V2.NormalRotated };
-            ShapeColorer.ColorShape(g, vertices, kd, ks, m, color, light, normals);
+            ShapeColorer.ColorShapeWithLighting(g, vertices, kd, ks, m, color, light, normals);
         }
     }
 }
