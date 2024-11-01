@@ -19,7 +19,7 @@ namespace TriangleFilling.Grid3D
 
             AddVertices(V, precision, step);
             AddTrinagles(precision);
-            Color = color ?? Color.LightGray;
+            Color = color ?? Color.White;
             Kd = kd ?? 0.5f;
             Ks = ks ?? 0.5f;
             M = m ?? 50;

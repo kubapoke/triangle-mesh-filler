@@ -47,10 +47,10 @@ namespace TriangleFilling.Coloring
                     Vector3 R = 2 * Vector3.Dot(N, L) * N - L;
                     R = Vector3.Normalize(R);
 
-                    Vector3 finalColor = kd * Vector3.Multiply(lightColor, objectColor) * Vector3CosDeg(N, L) +
-                        ks * Vector3.Multiply(lightColor, objectColor) * (float)Math.Pow(Vector3CosDeg(V, R), m);
+                    Vector3 diffuse = kd * Vector3.Multiply(lightColor, objectColor) * CosineAngle(N, L);
+                    Vector3 specular = ks * Vector3.Multiply(lightColor, objectColor) * (float)Math.Pow(CosineAngle(V, R), m);
 
-                    finalColor *= 255f;
+                    Vector3 finalColor = (diffuse + specular) * 255f;
 
                     finalColor = Vector3.Clamp(finalColor, new Vector3(0), new Vector3(255));
 
@@ -70,7 +70,7 @@ namespace TriangleFilling.Coloring
             return new Vector3(l1, l2, l3);
         }
 
-        private static float Vector3CosDeg(Vector3 a, Vector3 b)
+        private static float CosineAngle(Vector3 a, Vector3 b)
         {
             return (float)Math.Max(Vector3.Dot(a, b), 0);
         }
