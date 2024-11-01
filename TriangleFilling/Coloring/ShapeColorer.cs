@@ -5,7 +5,8 @@ namespace TriangleFilling.Coloring
 {
     internal class ShapeColorer
     {
-        public static void ColorShape(Graphics g, List<Vector3> vertices, Color? color = null, LightSource? light = null,
+        public static void ColorShape(Graphics g, List<Vector3> vertices, float kd, float ks, float m,
+            Color? color = null, LightSource? light = null, 
             List<Vector3>? normals = null, List<Vector3>? tangentsU = null, List<Vector3>? tangentsV = null)
         {
             Color _color = color ?? Color.LightGray;

@@ -34,6 +34,30 @@ namespace TriangleFilling
             }
         }
 
+        private float M
+        {
+            get
+            {
+                return (float)mTrackBar.Value;
+            }
+        }
+
+        private float Kd
+        {
+            get
+            {
+                return (float)kdTrackBar.Value / 100f;
+            }
+        }
+
+        private float Ks
+        {
+            get
+            {
+                return (float)ksTrackBar.Value / 100f;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -73,7 +97,7 @@ namespace TriangleFilling
                 }
             }
 
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
         }
 
@@ -105,7 +129,7 @@ namespace TriangleFilling
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
             Repaint();
         }

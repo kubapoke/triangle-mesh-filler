@@ -8,13 +8,20 @@ namespace TriangleFilling.Grid3D
         private float Size, RotationAlpha = 0, RotationBeta = 0;
         private List<Vertex> Vertices;
         private List<Triangle> Triangles;
-        internal Grid(Vector3[,] V, float width, float heigth, int precision)
+        private Color Color;
+        private float Kd, Ks, M;
+
+        internal Grid(Vector3[,] V, float width, float heigth, int precision, float? kd = null, float? ks = null, float? m = null, Color? color = null)
         {
             Size = Math.Min(width, heigth);
             float step = 1f / (float)(precision);
 
             AddVertices(V, precision, step);
             AddTrinagles(precision);
+            Color = color ?? Color.LightGray;
+            Kd = kd ?? 0.5f;
+            Ks = ks ?? 0.5f;
+            M = m ?? 50f;
         }
 
         private void AddVertices(Vector3[,] V, int precision, float step)
@@ -153,7 +160,7 @@ namespace TriangleFilling.Grid3D
             foreach (var triangle in Triangles)
             {
                 if (shouldDrawFill)
-                    triangle.Fill(g, light);
+                    triangle.Fill(g, Color, Kd, Ks, M, light);
                 if (shouldDrawOutline)
                     triangle.Draw(g);
             }
