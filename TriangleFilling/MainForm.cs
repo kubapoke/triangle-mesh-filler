@@ -34,11 +34,11 @@ namespace TriangleFilling
             }
         }
 
-        private float M
+        private int M
         {
             get
             {
-                return (float)mTrackBar.Value;
+                return mTrackBar.Value;
             }
         }
 
@@ -168,16 +168,19 @@ namespace TriangleFilling
 
         private void kdTrackBar_Scroll(object sender, EventArgs e)
         {
+            Grid.setKd(Kd);
             Repaint();
         }
 
         private void ksTrackBar_Scroll(object sender, EventArgs e)
         {
+            Grid.setKs(Ks);
             Repaint();
         }
 
         private void mTrackBar_Scroll(object sender, EventArgs e)
         {
+            Grid.setM(M);
             Repaint();
         }
 

@@ -26,13 +26,11 @@ namespace TriangleFilling.Grid3D
             g.DrawLine(p, V2, V0);
         }
 
-        public void Fill(Graphics g, Color color, float kd, float ks, float m, LightSource light)
+        public void Fill(Graphics g, Color color, float kd, float ks, int m, LightSource light)
         {
             List<Vector3> vertices = new List<Vector3>() { V0, V1, V2 };
             List<Vector3> normals = new List<Vector3>() { V0.NormalRotated, V1.NormalRotated, V2.NormalRotated };
-            List<Vector3> tangentsU = new List<Vector3>() { V0.TangentURotated, V1.TangentURotated, V2.TangentURotated };
-            List<Vector3> tangentsV = new List<Vector3>() { V0.TangentVRotated, V1.TangentVRotated, V2.TangentVRotated };
-            ShapeColorer.ColorShape(g, vertices, kd, ks, m, color, light, normals, tangentsU, tangentsV);
+            ShapeColorer.ColorShape(g, vertices, kd, ks, m, color, light, normals);
         }
     }
 }
