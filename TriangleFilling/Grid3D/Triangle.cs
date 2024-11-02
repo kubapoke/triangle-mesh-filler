@@ -19,11 +19,12 @@ namespace TriangleFilling.Grid3D
 
         public void Draw(Graphics g)
         {
-            Pen p = new Pen(Color.Black);
-
-            g.DrawLine(p, V0, V1);
-            g.DrawLine(p, V1, V2);
-            g.DrawLine(p, V2, V0);
+            using (Pen pen = new Pen(Color.Black))
+            {
+                g.DrawLine(pen, V0, V1);
+                g.DrawLine(pen, V1, V2);
+                g.DrawLine(pen, V2, V0);
+            }
         }
 
         public void Fill(Graphics g, Color color, float kd, float ks, int m, LightSource light)
