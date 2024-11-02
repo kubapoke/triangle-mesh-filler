@@ -57,7 +57,10 @@ namespace TriangleFilling.Coloring
                     finalColor = Vector3.Clamp(finalColor, new Vector3(0), new Vector3(255));
 
                     brush.Color = Color.FromArgb((int)finalColor.X, (int)finalColor.Y, (int)finalColor.Z);
-                    g.FillRectangle(brush, (int)point.x, (int)point.y, 1, 1);
+                    lock (g)
+                    {
+                        g.FillRectangle(brush, (int)point.x, (int)point.y, 1, 1);
+                    }
                 }
             }
         }

@@ -21,9 +21,12 @@ namespace TriangleFilling.Grid3D
         {
             using (Pen pen = new Pen(Color.Black))
             {
-                g.DrawLine(pen, V0, V1);
-                g.DrawLine(pen, V1, V2);
-                g.DrawLine(pen, V2, V0);
+                lock (g)
+                {
+                    g.DrawLine(pen, V0, V1);
+                    g.DrawLine(pen, V1, V2);
+                    g.DrawLine(pen, V2, V0);
+                }
             }
         }
 
