@@ -30,6 +30,9 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            label9 = new Label();
+            lightRadiusTrackBar = new TrackBar();
+            showLightCheckBox = new CheckBox();
             lightColorPanel = new Panel();
             surfaceColorPanel = new Panel();
             lightColorButton = new Button();
@@ -58,6 +61,7 @@
             mainSplitContainer.Panel2.SuspendLayout();
             mainSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lightRadiusTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lightRotationTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lightHeightTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mTrackBar).BeginInit();
@@ -82,6 +86,9 @@
             // 
             // mainSplitContainer.Panel2
             // 
+            mainSplitContainer.Panel2.Controls.Add(label9);
+            mainSplitContainer.Panel2.Controls.Add(lightRadiusTrackBar);
+            mainSplitContainer.Panel2.Controls.Add(showLightCheckBox);
             mainSplitContainer.Panel2.Controls.Add(lightColorPanel);
             mainSplitContainer.Panel2.Controls.Add(surfaceColorPanel);
             mainSplitContainer.Panel2.Controls.Add(lightColorButton);
@@ -105,8 +112,8 @@
             mainSplitContainer.Panel2.Controls.Add(alphaDegreeTrackBar);
             mainSplitContainer.Panel2.Controls.Add(label1);
             mainSplitContainer.Panel2.Controls.Add(precisionTrackBar);
-            mainSplitContainer.Size = new Size(800, 521);
-            mainSplitContainer.SplitterDistance = 550;
+            mainSplitContainer.Size = new Size(884, 561);
+            mainSplitContainer.SplitterDistance = 634;
             mainSplitContainer.TabIndex = 0;
             // 
             // mainPictureBox
@@ -114,15 +121,46 @@
             mainPictureBox.Dock = DockStyle.Fill;
             mainPictureBox.Location = new Point(0, 0);
             mainPictureBox.Name = "mainPictureBox";
-            mainPictureBox.Size = new Size(550, 521);
+            mainPictureBox.Size = new Size(634, 561);
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(10, 372);
+            label9.Name = "label9";
+            label9.Size = new Size(54, 15);
+            label9.TabIndex = 25;
+            label9.Text = "light rad:";
+            // 
+            // lightRadiusTrackBar
+            // 
+            lightRadiusTrackBar.Location = new Point(69, 369);
+            lightRadiusTrackBar.Maximum = 750;
+            lightRadiusTrackBar.Name = "lightRadiusTrackBar";
+            lightRadiusTrackBar.Size = new Size(174, 45);
+            lightRadiusTrackBar.TabIndex = 24;
+            lightRadiusTrackBar.TickFrequency = 70;
+            lightRadiusTrackBar.Value = 500;
+            lightRadiusTrackBar.Scroll += lightRadiusTrackBar_Scroll;
+            // 
+            // showLightCheckBox
+            // 
+            showLightCheckBox.AutoSize = true;
+            showLightCheckBox.Location = new Point(145, 496);
+            showLightCheckBox.Name = "showLightCheckBox";
+            showLightCheckBox.Size = new Size(81, 19);
+            showLightCheckBox.TabIndex = 23;
+            showLightCheckBox.Text = "show light";
+            showLightCheckBox.UseVisualStyleBackColor = true;
+            showLightCheckBox.CheckedChanged += showLightCheckBox_CheckedChanged;
+            // 
             // lightColorPanel
             // 
             lightColorPanel.BackColor = Color.White;
-            lightColorPanel.Location = new Point(220, 470);
+            lightColorPanel.Location = new Point(221, 521);
             lightColorPanel.Name = "lightColorPanel";
             lightColorPanel.Size = new Size(23, 21);
             lightColorPanel.TabIndex = 22;
@@ -130,14 +168,14 @@
             // surfaceColorPanel
             // 
             surfaceColorPanel.BackColor = Color.White;
-            surfaceColorPanel.Location = new Point(99, 470);
+            surfaceColorPanel.Location = new Point(100, 521);
             surfaceColorPanel.Name = "surfaceColorPanel";
             surfaceColorPanel.Size = new Size(23, 21);
             surfaceColorPanel.TabIndex = 21;
             // 
             // lightColorButton
             // 
-            lightColorButton.Location = new Point(123, 469);
+            lightColorButton.Location = new Point(124, 520);
             lightColorButton.Name = "lightColorButton";
             lightColorButton.Size = new Size(96, 23);
             lightColorButton.TabIndex = 20;
@@ -147,7 +185,7 @@
             // 
             // surfaceColorButton
             // 
-            surfaceColorButton.Location = new Point(2, 469);
+            surfaceColorButton.Location = new Point(3, 520);
             surfaceColorButton.Name = "surfaceColorButton";
             surfaceColorButton.Size = new Size(96, 23);
             surfaceColorButton.TabIndex = 19;
@@ -160,7 +198,7 @@
             animationCheckBox.AutoSize = true;
             animationCheckBox.Checked = true;
             animationCheckBox.CheckState = CheckState.Checked;
-            animationCheckBox.Location = new Point(21, 445);
+            animationCheckBox.Location = new Point(22, 496);
             animationCheckBox.Name = "animationCheckBox";
             animationCheckBox.Size = new Size(96, 19);
             animationCheckBox.TabIndex = 18;
@@ -171,7 +209,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(10, 372);
+            label7.Location = new Point(10, 423);
             label7.Name = "label7";
             label7.Size = new Size(52, 15);
             label7.TabIndex = 17;
@@ -180,7 +218,7 @@
             // lightRotationTrackBar
             // 
             lightRotationTrackBar.Enabled = false;
-            lightRotationTrackBar.Location = new Point(69, 369);
+            lightRotationTrackBar.Location = new Point(69, 420);
             lightRotationTrackBar.Maximum = 200;
             lightRotationTrackBar.Name = "lightRotationTrackBar";
             lightRotationTrackBar.Size = new Size(174, 45);
@@ -275,7 +313,7 @@
             fillCheckBox.AutoSize = true;
             fillCheckBox.Checked = true;
             fillCheckBox.CheckState = CheckState.Checked;
-            fillCheckBox.Location = new Point(144, 420);
+            fillCheckBox.Location = new Point(145, 471);
             fillCheckBox.Name = "fillCheckBox";
             fillCheckBox.Size = new Size(70, 19);
             fillCheckBox.TabIndex = 7;
@@ -288,7 +326,7 @@
             outlineCheckbox.AutoSize = true;
             outlineCheckbox.Checked = true;
             outlineCheckbox.CheckState = CheckState.Checked;
-            outlineCheckbox.Location = new Point(21, 420);
+            outlineCheckbox.Location = new Point(22, 471);
             outlineCheckbox.Name = "outlineCheckbox";
             outlineCheckbox.Size = new Size(94, 19);
             outlineCheckbox.TabIndex = 6;
@@ -359,9 +397,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 521);
+            ClientSize = new Size(884, 561);
             Controls.Add(mainSplitContainer);
-            MinimumSize = new Size(816, 560);
+            MinimumSize = new Size(900, 600);
             Name = "MainForm";
             Text = "Triangle Filler";
             mainSplitContainer.Panel1.ResumeLayout(false);
@@ -370,6 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).EndInit();
             mainSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)mainPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lightRadiusTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)lightRotationTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)lightHeightTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)mTrackBar).EndInit();
@@ -408,5 +447,8 @@
         private Button surfaceColorButton;
         private Panel surfaceColorPanel;
         private Panel lightColorPanel;
+        private CheckBox showLightCheckBox;
+        private Label label9;
+        private TrackBar lightRadiusTrackBar;
     }
 }

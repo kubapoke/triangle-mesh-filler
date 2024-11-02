@@ -37,6 +37,14 @@ namespace TriangleFilling
             }
         }
 
+        private bool ShouldDrawLight
+        {
+            get
+            {
+                return showLightCheckBox.Checked;
+            }
+        }
+
         private int M
         {
             get
@@ -58,6 +66,42 @@ namespace TriangleFilling
             get
             {
                 return (float)ksTrackBar.Value / 100f;
+            }
+        }
+
+        private int lightHeight
+        {
+            get
+            {
+                return lightHeightTrackBar.Value;
+            }
+        }
+
+        private int lightRadius
+        {
+            get
+            {
+                return lightRadiusTrackBar.Value;
+            }
+        }
+
+        private int lightRotation
+        {
+            get
+            {
+                return lightRotationTrackBar.Value;
+            }
+            set
+            {
+                lightRotationTrackBar.Value = value;
+            }
+        }
+
+        private int lightRotationMaximum
+        {
+            get
+            {
+                return lightRotationTrackBar.Maximum;
             }
         }
 
@@ -114,16 +158,16 @@ namespace TriangleFilling
             g.ScaleTransform(1, -1);
             g.TranslateTransform(mainPictureBox.Width / 2, -mainPictureBox.Height / 2);
 
-            Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill);
+            Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill, ShouldDrawLight);
         }
 
         private void calculateLightPosition()
         {
             if (Light == null) return;
 
-            float x = (float)Math.Cos((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 500f;
-            float y = (float)Math.Sin((float)lightRotationTrackBar.Value * 2.0 * Math.PI / (float)lightRotationTrackBar.Maximum) * 500f;
-            float z = lightHeightTrackBar.Value;
+            float x = (float)Math.Cos((float)lightRotation * 2.0 * Math.PI / (float)lightRotationMaximum) * (float)lightRadius;
+            float y = (float)Math.Sin((float)lightRotation * 2.0 * Math.PI / (float)lightRotationMaximum) * (float)lightRadius;
+            float z = lightHeight;
 
             Light.SetPosition(new Vector3(x, y, z));
         }
@@ -140,8 +184,8 @@ namespace TriangleFilling
                 Thread.Sleep(20);
 
                 lightRotationTrackBar.Value++;
-                if (lightRotationTrackBar.Value >= lightRotationTrackBar.Maximum)
-                    lightRotationTrackBar.Value = lightRotationTrackBar.Minimum;
+                if (lightRotation >= lightRotationMaximum)
+                    lightRotation = 0;
 
                 calculateLightPosition();
                 Repaint();
@@ -217,6 +261,12 @@ namespace TriangleFilling
             Repaint();
         }
 
+        private void lightRadiusTrackBar_Scroll(object sender, EventArgs e)
+        {
+            calculateLightPosition();
+            Repaint();
+        }
+
         private void animationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (animationCheckBox.Checked)
@@ -264,5 +314,12 @@ namespace TriangleFilling
 
             Repaint();
         }
+
+        private void showLightCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+
     }
 }

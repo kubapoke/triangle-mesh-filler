@@ -156,7 +156,7 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true, bool shouldDrawFill = true)
+        public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true, bool shouldDrawFill = true, bool shouldDrawLight = false)
         {
             foreach (var triangle in Triangles)
             {
@@ -164,6 +164,11 @@ namespace TriangleFilling.Grid3D
                     triangle.Fill(g, Color, Kd, Ks, M, light);
                 if (shouldDrawOutline)
                     triangle.Draw(g);
+            }
+
+            if (shouldDrawLight)
+            {
+                light.Draw(g);
             }
         }
 
