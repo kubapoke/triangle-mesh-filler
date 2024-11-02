@@ -111,10 +111,9 @@ namespace TriangleFilling
 
             InitializeGrid();
 
-            Light = new LightSource(new Vector3(0, 0, 0), Color.White);
-            calculateLightPosition();
+            InitializeLighting();
 
-            SurfaceColor = LightColor = Color.White;
+            InitializeControls();
 
             Repaint();
         }
@@ -146,9 +145,26 @@ namespace TriangleFilling
                 }
             }
 
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Color.White);
+            SurfaceColor = surfaceColorPanel.BackColor;
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, SurfaceColor);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
-            AnimationTask = Task.Run(() => AnimateRotation());
+        }
+
+        private void InitializeLighting()
+        {
+            Light = new LightSource(new Vector3(0, 0, 0), Color.White);
+            calculateLightPosition();
+
+            LightColor = lightColorPanel.BackColor;
+        }
+
+        private void InitializeControls()
+        {
+            if (animationCheckBox.Checked)
+            {
+                AnimationTask = Task.Run(() => AnimateRotation());
+                lightRotationTrackBar.Enabled = false;
+            }
         }
 
         private void mainPictureBox_Paint(object sender, PaintEventArgs e)

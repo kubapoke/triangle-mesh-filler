@@ -197,8 +197,6 @@
             // animationCheckBox
             // 
             animationCheckBox.AutoSize = true;
-            animationCheckBox.Checked = true;
-            animationCheckBox.CheckState = CheckState.Checked;
             animationCheckBox.Location = new Point(22, 496);
             animationCheckBox.Name = "animationCheckBox";
             animationCheckBox.Size = new Size(96, 19);
@@ -218,7 +216,6 @@
             // 
             // lightRotationTrackBar
             // 
-            lightRotationTrackBar.Enabled = false;
             lightRotationTrackBar.Location = new Point(69, 420);
             lightRotationTrackBar.Maximum = 200;
             lightRotationTrackBar.Name = "lightRotationTrackBar";
