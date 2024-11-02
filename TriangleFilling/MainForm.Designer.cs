@@ -118,6 +118,7 @@
             // 
             // mainPictureBox
             // 
+            mainPictureBox.BackColor = Color.Black;
             mainPictureBox.Dock = DockStyle.Fill;
             mainPictureBox.Location = new Point(0, 0);
             mainPictureBox.Name = "mainPictureBox";
