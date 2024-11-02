@@ -183,7 +183,7 @@ namespace TriangleFilling
             {
                 Thread.Sleep(20);
 
-                lightRotationTrackBar.Value++;
+                lightRotation = lightRotation + 1;
                 if (lightRotation >= lightRotationMaximum)
                     lightRotation = 0;
 
