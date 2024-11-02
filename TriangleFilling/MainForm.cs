@@ -111,10 +111,6 @@ namespace TriangleFilling
 
             InitializeGrid();
 
-            InitializeLighting();
-
-            InitializeControls();
-
             Repaint();
         }
 
@@ -181,9 +177,27 @@ namespace TriangleFilling
         {
             if (Light == null) return;
 
-            float x = (float)Math.Cos((float)lightRotation * 2.0 * Math.PI / (float)lightRotationMaximum) * (float)lightRadius;
-            float y = (float)Math.Sin((float)lightRotation * 2.0 * Math.PI / (float)lightRotationMaximum) * (float)lightRadius;
-            float z = lightHeight;
+            float radius = 0, rotation = 0, maxRotation = 0, height = 0;
+
+            lightRadiusTrackBar.Invoke(() =>
+            {
+                radius = lightRadius;
+            });
+
+            lightRotationTrackBar.Invoke(() =>
+            {
+                rotation = lightRotation;
+                maxRotation = lightRotationMaximum;
+            });
+
+            lightHeightTrackBar.Invoke(() =>
+            {
+                height = lightHeight;
+            });
+
+            float x = (float)Math.Cos(rotation * 2.0 * Math.PI / maxRotation) * radius;
+            float y = (float)Math.Sin(rotation * 2.0 * Math.PI / maxRotation) * radius;
+            float z = height;
 
             Light.SetPosition(new Vector3(x, y, z));
         }
@@ -199,9 +213,12 @@ namespace TriangleFilling
             {
                 Thread.Sleep(20);
 
-                lightRotation = lightRotation + 1;
-                if (lightRotation >= lightRotationMaximum)
-                    lightRotation = 0;
+                lightRotationTrackBar.Invoke(() =>
+                {
+                    lightRotation = lightRotation + 1;
+                    if (lightRotation >= lightRotationMaximum)
+                        lightRotation = 0;
+                });
 
                 calculateLightPosition();
                 Repaint();
@@ -295,7 +312,6 @@ namespace TriangleFilling
             {
                 ShouldAnimate = false;
                 lightRotationTrackBar.Enabled = true;
-                AnimationTask.Wait();
             }
         }
 
@@ -336,6 +352,11 @@ namespace TriangleFilling
             Repaint();
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            InitializeLighting();
 
+            InitializeControls();
+        }
     }
 }

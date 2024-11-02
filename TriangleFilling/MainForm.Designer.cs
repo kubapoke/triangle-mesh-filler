@@ -197,6 +197,8 @@
             // animationCheckBox
             // 
             animationCheckBox.AutoSize = true;
+            animationCheckBox.Checked = true;
+            animationCheckBox.CheckState = CheckState.Checked;
             animationCheckBox.Location = new Point(22, 496);
             animationCheckBox.Name = "animationCheckBox";
             animationCheckBox.Size = new Size(96, 19);
@@ -217,11 +219,11 @@
             // lightRotationTrackBar
             // 
             lightRotationTrackBar.Location = new Point(69, 420);
-            lightRotationTrackBar.Maximum = 200;
+            lightRotationTrackBar.Maximum = 400;
             lightRotationTrackBar.Name = "lightRotationTrackBar";
             lightRotationTrackBar.Size = new Size(174, 45);
             lightRotationTrackBar.TabIndex = 16;
-            lightRotationTrackBar.TickFrequency = 20;
+            lightRotationTrackBar.TickFrequency = 40;
             lightRotationTrackBar.Scroll += lightRotationTrackBar_Scroll;
             // 
             // label8
@@ -400,6 +402,7 @@
             MinimumSize = new Size(900, 600);
             Name = "MainForm";
             Text = "Triangle Filler";
+            Shown += MainForm_Shown;
             mainSplitContainer.Panel1.ResumeLayout(false);
             mainSplitContainer.Panel2.ResumeLayout(false);
             mainSplitContainer.Panel2.PerformLayout();
