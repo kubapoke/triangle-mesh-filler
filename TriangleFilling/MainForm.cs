@@ -227,7 +227,7 @@ namespace TriangleFilling
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Color.White);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, SurfaceColor);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
             Repaint();
         }
