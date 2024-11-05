@@ -30,11 +30,12 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Fill(Graphics g, Color color, float kd, float ks, int m, LightSource light)
+        public void Fill(Graphics g, Texture texture, float kd, float ks, int m, LightSource light)
         {
             List<Vector3> vertices = new List<Vector3>() { V0, V1, V2 };
             List<Vector3> normals = new List<Vector3>() { V0.NormalRotated, V1.NormalRotated, V2.NormalRotated };
-            ShapeColorer.ColorShapeWithLighting(g, vertices, kd, ks, m, color, light, normals);
+            List<Vector2> gridCoordinates = new List<Vector2> { V0.GridCoordinates, V1.GridCoordinates, V2.GridCoordinates };
+            ShapeColorer.ColorShapeWithLighting(g, vertices, kd, ks, m, texture, light, normals, gridCoordinates);
         }
     }
 }

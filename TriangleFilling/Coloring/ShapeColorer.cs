@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using TriangleFilling.Grid3D;
 using TriangleFilling.Lighting;
 
 namespace TriangleFilling.Coloring
@@ -19,7 +20,7 @@ namespace TriangleFilling.Coloring
         }
 
         public static void ColorShapeWithLighting(Graphics g, List<Vector3> vertices, float kd, float ks, int m,
-            Color color, LightSource light, List<Vector3> normals)
+            Texture texture, LightSource light, List<Vector3> normals, List<Vector2> gridCoordinates)
         {
             Vector2 V0 = new Vector2(vertices[0].X, vertices[0].Y);
             Vector2 V1 = new Vector2(vertices[1].X, vertices[1].Y);
@@ -27,14 +28,18 @@ namespace TriangleFilling.Coloring
 
             ActiveEdgeTable AET = new ActiveEdgeTable(new List<Vector2>() { V0, V1, V2 });
 
-            using (var brush = new SolidBrush(color))
+            using (var brush = new SolidBrush(Color.White))
             {
                 foreach (var point in AET.GetPoints())
                 {
                     Vector3 lightPosition = light.Position;
                     Vector3 lightColor = new Vector3((float)light.Color.R / 255f, (float)light.Color.G / 255f, (float)light.Color.B / 255f);
-                    Vector3 objectColor = new Vector3((float)color.R / 255f, (float)color.G / 255f, (float)color.B / 255f);
                     Vector3 coords = CalculateBarycentricCoords(new Vector2(point.x, point.y), V0, V1, V2);
+
+                    float u = coords[0] * gridCoordinates[0].X + coords[1] * gridCoordinates[1].X + coords[2] * gridCoordinates[2].X;
+                    float v = coords[0] * gridCoordinates[0].Y + coords[1] * gridCoordinates[1].Y + coords[2] * gridCoordinates[2].Y;
+
+                    Vector3 objectColor = texture.GetPixelVector(u, v);
 
                     Vector3 N = coords[0] * normals[0] + coords[1] * normals[1] + coords[2] * normals[2];
                     N = Vector3.Normalize(N);

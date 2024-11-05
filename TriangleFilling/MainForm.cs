@@ -12,7 +12,8 @@ namespace TriangleFilling
         private LightSource Light;
         private Task AnimationTask;
         private bool ShouldAnimate = true;
-        private Color SurfaceColor, LightColor;
+        private Color LightColor;
+        private Texture Texture;
         private int Precision
         {
             get
@@ -141,8 +142,9 @@ namespace TriangleFilling
                 }
             }
 
-            SurfaceColor = surfaceColorPanel.BackColor;
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, SurfaceColor);
+            Texture = new Texture(".\\Textures\\texture1.png");
+
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
         }
 
@@ -227,7 +229,7 @@ namespace TriangleFilling
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, SurfaceColor);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
             Repaint();
         }
@@ -317,18 +319,18 @@ namespace TriangleFilling
 
         private void surfaceColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            dialog.AllowFullOpen = false;
-            dialog.ShowHelp = true;
-            dialog.Color = SurfaceColor;
+            //ColorDialog dialog = new ColorDialog();
+            //dialog.AllowFullOpen = false;
+            //dialog.ShowHelp = true;
+            //dialog.Color = SurfaceColor;
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                surfaceColorPanel.BackColor = SurfaceColor = dialog.Color;
-                Grid.SetColor(SurfaceColor);
-            }
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    surfaceColorPanel.BackColor = SurfaceColor = dialog.Color;
+            //    Grid.SetColor(SurfaceColor);
+            //}
 
-            Repaint();
+            //Repaint();
         }
 
         private void lightColorButton_Click(object sender, EventArgs e)
