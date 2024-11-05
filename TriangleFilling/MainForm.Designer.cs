@@ -214,6 +214,7 @@
             lightRotationTrackBar.Size = new Size(174, 45);
             lightRotationTrackBar.TabIndex = 16;
             lightRotationTrackBar.TickFrequency = 40;
+            lightRotationTrackBar.Value = 300;
             lightRotationTrackBar.Scroll += lightRotationTrackBar_Scroll;
             // 
             // label8
