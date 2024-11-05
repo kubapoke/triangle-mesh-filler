@@ -30,13 +30,12 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            surfaceTextureButton = new Button();
             label9 = new Label();
             lightRadiusTrackBar = new TrackBar();
             showLightCheckBox = new CheckBox();
             lightColorPanel = new Panel();
-            surfaceColorPanel = new Panel();
             lightColorButton = new Button();
-            surfaceColorButton = new Button();
             animationCheckBox = new CheckBox();
             label7 = new Label();
             lightRotationTrackBar = new TrackBar();
@@ -86,13 +85,12 @@
             // 
             // mainSplitContainer.Panel2
             // 
+            mainSplitContainer.Panel2.Controls.Add(surfaceTextureButton);
             mainSplitContainer.Panel2.Controls.Add(label9);
             mainSplitContainer.Panel2.Controls.Add(lightRadiusTrackBar);
             mainSplitContainer.Panel2.Controls.Add(showLightCheckBox);
             mainSplitContainer.Panel2.Controls.Add(lightColorPanel);
-            mainSplitContainer.Panel2.Controls.Add(surfaceColorPanel);
             mainSplitContainer.Panel2.Controls.Add(lightColorButton);
-            mainSplitContainer.Panel2.Controls.Add(surfaceColorButton);
             mainSplitContainer.Panel2.Controls.Add(animationCheckBox);
             mainSplitContainer.Panel2.Controls.Add(label7);
             mainSplitContainer.Panel2.Controls.Add(lightRotationTrackBar);
@@ -126,6 +124,16 @@
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
+            // 
+            // surfaceTextureButton
+            // 
+            surfaceTextureButton.Location = new Point(10, 521);
+            surfaceTextureButton.Name = "surfaceTextureButton";
+            surfaceTextureButton.Size = new Size(96, 23);
+            surfaceTextureButton.TabIndex = 26;
+            surfaceTextureButton.Text = "Surface texture";
+            surfaceTextureButton.UseVisualStyleBackColor = true;
+            surfaceTextureButton.Click += surfaceTextureButton_Click;
             // 
             // label9
             // 
@@ -161,38 +169,20 @@
             // lightColorPanel
             // 
             lightColorPanel.BackColor = Color.White;
-            lightColorPanel.Location = new Point(221, 521);
+            lightColorPanel.Location = new Point(216, 522);
             lightColorPanel.Name = "lightColorPanel";
             lightColorPanel.Size = new Size(23, 21);
             lightColorPanel.TabIndex = 22;
             // 
-            // surfaceColorPanel
-            // 
-            surfaceColorPanel.BackColor = Color.White;
-            surfaceColorPanel.Location = new Point(100, 521);
-            surfaceColorPanel.Name = "surfaceColorPanel";
-            surfaceColorPanel.Size = new Size(23, 21);
-            surfaceColorPanel.TabIndex = 21;
-            // 
             // lightColorButton
             // 
-            lightColorButton.Location = new Point(124, 520);
+            lightColorButton.Location = new Point(119, 521);
             lightColorButton.Name = "lightColorButton";
             lightColorButton.Size = new Size(96, 23);
             lightColorButton.TabIndex = 20;
             lightColorButton.Text = "Light color";
             lightColorButton.UseVisualStyleBackColor = true;
             lightColorButton.Click += lightColorButton_Click;
-            // 
-            // surfaceColorButton
-            // 
-            surfaceColorButton.Location = new Point(3, 520);
-            surfaceColorButton.Name = "surfaceColorButton";
-            surfaceColorButton.Size = new Size(96, 23);
-            surfaceColorButton.TabIndex = 19;
-            surfaceColorButton.Text = "Surface color";
-            surfaceColorButton.UseVisualStyleBackColor = true;
-            surfaceColorButton.Click += surfaceColorButton_Click;
             // 
             // animationCheckBox
             // 
@@ -445,11 +435,10 @@
         private TrackBar lightHeightTrackBar;
         private CheckBox animationCheckBox;
         private Button lightColorButton;
-        private Button surfaceColorButton;
-        private Panel surfaceColorPanel;
         private Panel lightColorPanel;
         private CheckBox showLightCheckBox;
         private Label label9;
         private TrackBar lightRadiusTrackBar;
+        private Button surfaceTextureButton;
     }
 }

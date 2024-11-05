@@ -317,22 +317,6 @@ namespace TriangleFilling
             }
         }
 
-        private void surfaceColorButton_Click(object sender, EventArgs e)
-        {
-            //ColorDialog dialog = new ColorDialog();
-            //dialog.AllowFullOpen = false;
-            //dialog.ShowHelp = true;
-            //dialog.Color = SurfaceColor;
-
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    surfaceColorPanel.BackColor = SurfaceColor = dialog.Color;
-            //    Grid.SetColor(SurfaceColor);
-            //}
-
-            //Repaint();
-        }
-
         private void lightColorButton_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -359,6 +343,26 @@ namespace TriangleFilling
             InitializeLighting();
 
             InitializeControls();
+        }
+
+        private void surfaceTextureButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = ".\\Textures",
+                Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+
+                Texture = new Texture(path);
+
+                Grid.SetTexture(Texture);
+
+                Repaint();
+            }
         }
     }
 }
