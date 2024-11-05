@@ -8,13 +8,15 @@ namespace TriangleFilling.Grid3D
         public Vector3 Normal, NormalRotated;
         public Vector3 TangentU, TangentURotated;
         public Vector3 TangentV, TangentVRotated;
+        public Vector2 GridCoordinates;
 
-        public Vertex(Vector3 position, Vector3 normal, Vector3 tangetntU, Vector3 tangentV)
+        public Vertex(Vector3 position, Vector3 normal, Vector3 tangetntU, Vector3 tangentV, Vector2 gridCoordinates)
         {
             Position = PositionRotated = position;
             Normal = NormalRotated = normal;
             TangentU = TangentURotated = tangetntU;
             TangentV = TangentVRotated = tangentV;
+            GridCoordinates = gridCoordinates;
         }
 
         public void Rotate(float rotationAlpha, float rotationBeta)

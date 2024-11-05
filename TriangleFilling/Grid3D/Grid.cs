@@ -39,8 +39,9 @@ namespace TriangleFilling.Grid3D
                     Vector3 tangentU = CalculateTangentU(u, v, V);
                     Vector3 tangentV = CalculateTangentV(u, v, V);
                     Vector3 normal = CalculateNormal(tangentU, tangentV);
+                    Vector2 gridCoordinates = new Vector2(u, v);
 
-                    Vertices.Add(new Vertex(coords, normal, tangentU, tangentV));
+                    Vertices.Add(new Vertex(coords, normal, tangentU, tangentV, gridCoordinates));
                 }
             }
         }
