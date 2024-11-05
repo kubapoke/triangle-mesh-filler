@@ -118,7 +118,7 @@ namespace TriangleFilling
         {
             float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.5f;
 
-            using (StreamReader sr = new StreamReader(".\\input.txt"))
+            using (StreamReader sr = new StreamReader(".\\Inputs\\input.txt"))
             {
                 for (int i = 0; i < 4; i++)
                 {
