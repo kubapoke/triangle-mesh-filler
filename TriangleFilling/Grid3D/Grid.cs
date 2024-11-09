@@ -163,6 +163,9 @@ namespace TriangleFilling.Grid3D
             {
                 if (shouldDrawFill)
                     triangle.Fill(g, Texture, Kd, Ks, M, light);
+            });
+            Parallel.ForEach(Triangles, triangle =>
+            {
                 if (shouldDrawOutline)
                     triangle.Draw(g);
             });
