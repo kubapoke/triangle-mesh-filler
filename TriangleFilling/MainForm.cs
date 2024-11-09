@@ -223,9 +223,10 @@ namespace TriangleFilling
         {
             lightRotationTrackBar.Invoke(() =>
             {
-                lightRotation = lightRotation + 1;
-                if (lightRotation >= lightRotationMaximum)
+                if (lightRotation + 5 > lightRotationMaximum)
                     lightRotation = 0;
+                else
+                    lightRotation = lightRotation + 5;
             });
             
             calculateLightPosition();
