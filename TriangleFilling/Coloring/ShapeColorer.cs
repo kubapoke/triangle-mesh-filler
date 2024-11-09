@@ -28,9 +28,7 @@ namespace TriangleFilling.Coloring
 
             ActiveEdgeTable AET = new ActiveEdgeTable(new List<Vector2>() { V0, V1, V2 });
 
-            using (var brush = new SolidBrush(Color.White))
-            {
-                foreach (var point in AET.GetPoints())
+                Parallel.ForEach(AET.GetPoints(), point =>
                 {
                     Vector3 lightPosition = light.Position;
                     Vector3 lightColor = new Vector3((float)light.Color.R / 255f, (float)light.Color.G / 255f, (float)light.Color.B / 255f);
@@ -61,13 +59,12 @@ namespace TriangleFilling.Coloring
 
                     finalColor = Vector3.Clamp(finalColor, new Vector3(0), new Vector3(255));
 
-                    brush.Color = Color.FromArgb((int)finalColor.X, (int)finalColor.Y, (int)finalColor.Z);
+                    var brush = new SolidBrush(Color.FromArgb((int)finalColor.X, (int)finalColor.Y, (int)finalColor.Z));
                     lock (g)
                     {
                         g.FillRectangle(brush, (int)point.x, (int)point.y, 1, 1);
                     }
-                }
-            }
+                });
         }
 
         private static Vector3 CalculateBarycentricCoords(Vector2 p, Vector2 a, Vector2 b, Vector2 c)
