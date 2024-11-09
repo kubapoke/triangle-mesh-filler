@@ -118,7 +118,7 @@ namespace TriangleFilling
 
         private void InitializeGrid()
         {
-            float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.5f;
+            float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.35f;
 
             using (StreamReader sr = new StreamReader(".\\Inputs\\input.txt"))
             {

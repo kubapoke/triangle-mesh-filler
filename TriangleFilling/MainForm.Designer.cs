@@ -152,7 +152,7 @@
             lightRadiusTrackBar.Size = new Size(174, 45);
             lightRadiusTrackBar.TabIndex = 24;
             lightRadiusTrackBar.TickFrequency = 70;
-            lightRadiusTrackBar.Value = 500;
+            lightRadiusTrackBar.Value = 350;
             lightRadiusTrackBar.Scroll += lightRadiusTrackBar_Scroll;
             // 
             // showLightCheckBox
@@ -375,12 +375,12 @@
             // precisionTrackBar
             // 
             precisionTrackBar.Location = new Point(69, 12);
-            precisionTrackBar.Maximum = 128;
+            precisionTrackBar.Maximum = 64;
             precisionTrackBar.Minimum = 1;
             precisionTrackBar.Name = "precisionTrackBar";
             precisionTrackBar.Size = new Size(174, 45);
             precisionTrackBar.TabIndex = 0;
-            precisionTrackBar.TickFrequency = 16;
+            precisionTrackBar.TickFrequency = 8;
             precisionTrackBar.Value = 16;
             precisionTrackBar.Scroll += precisionTrackBar_Scroll;
             // 
