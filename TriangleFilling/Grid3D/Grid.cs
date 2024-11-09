@@ -159,13 +159,13 @@ namespace TriangleFilling.Grid3D
 
         public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true, bool shouldDrawFill = true, bool shouldDrawLight = false)
         {
-            foreach (var triangle in Triangles)
+            Parallel.ForEach(Triangles, triangle =>
             {
                 if (shouldDrawFill)
                     triangle.Fill(g, Texture, Kd, Ks, M, light);
                 if (shouldDrawOutline)
                     triangle.Draw(g);
-            }
+            });
 
             if (shouldDrawLight)
             {

@@ -25,7 +25,10 @@ namespace TriangleFilling.Grid3D
             if (y < 0) y = 0;
             else if (y >= Height) y = Height - 1;
 
-            return Bitmap.GetPixel(x, y);
+            lock(Bitmap)
+            {
+                return Bitmap.GetPixel(x, y);
+            }        
         }
 
         public Vector3 GetPixelVector(float u, float v)

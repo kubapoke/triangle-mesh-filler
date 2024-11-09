@@ -160,7 +160,7 @@ namespace TriangleFilling
         private void InitializeTimer()
         {
             Timer = new System.Windows.Forms.Timer();
-            Timer.Tick += new EventHandler(OnTimedEvent);
+            Timer.Tick += new EventHandler(onTimer_Tick);
             Timer.Interval = 20;
 
             if (animationCheckBox.Checked)
@@ -214,7 +214,7 @@ namespace TriangleFilling
             mainPictureBox.Invalidate();
         }
 
-        public void OnTimedEvent(object source, EventArgs e)
+        public void onTimer_Tick(object source, EventArgs e)
         {
             AnimateRotation();
         }
