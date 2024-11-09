@@ -1,5 +1,7 @@
 using System.Globalization;
 using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Timers;
 using TriangleFilling.Grid3D;
 using TriangleFilling.Lighting;
 
@@ -10,8 +12,7 @@ namespace TriangleFilling
         private Grid Grid;
         private Vector3[,] Coordinates = new Vector3[4, 4];
         private LightSource Light;
-        private Task AnimationTask;
-        private bool ShouldAnimate = true;
+        private System.Windows.Forms.Timer Timer;
         private Color LightColor;
         private Texture Texture;
         private int Precision
@@ -156,11 +157,15 @@ namespace TriangleFilling
             LightColor = lightColorPanel.BackColor;
         }
 
-        private void InitializeControls()
+        private void InitializeTimer()
         {
+            Timer = new System.Windows.Forms.Timer();
+            Timer.Tick += new EventHandler(OnTimedEvent);
+            Timer.Interval = 20;
+
             if (animationCheckBox.Checked)
             {
-                AnimationTask = Task.Run(() => AnimateRotation());
+                Timer.Enabled = true;
                 lightRotationTrackBar.Enabled = false;
             }
         }
@@ -183,18 +188,18 @@ namespace TriangleFilling
 
             lightRadiusTrackBar.Invoke(() =>
             {
-                radius = lightRadius;
+            radius = lightRadius;
             });
-
+            
             lightRotationTrackBar.Invoke(() =>
             {
-                rotation = lightRotation;
-                maxRotation = lightRotationMaximum;
+            rotation = lightRotation;
+            maxRotation = lightRotationMaximum;
             });
 
             lightHeightTrackBar.Invoke(() =>
             {
-                height = lightHeight;
+            height = lightHeight;
             });
 
             float x = (float)Math.Cos(rotation * 2.0 * Math.PI / maxRotation) * radius;
@@ -209,22 +214,22 @@ namespace TriangleFilling
             mainPictureBox.Invalidate();
         }
 
-        private void AnimateRotation()
+        public void OnTimedEvent(object source, EventArgs e)
         {
-            while (ShouldAnimate)
+            AnimateRotation();
+        }
+
+        public void AnimateRotation()
+        {
+            lightRotationTrackBar.Invoke(() =>
             {
-                Thread.Sleep(20);
-
-                lightRotationTrackBar.Invoke(() =>
-                {
-                    lightRotation = lightRotation + 1;
-                    if (lightRotation >= lightRotationMaximum)
-                        lightRotation = 0;
-                });
-
-                calculateLightPosition();
-                Repaint();
-            }
+                lightRotation = lightRotation + 1;
+                if (lightRotation >= lightRotationMaximum)
+                    lightRotation = 0;
+            });
+            
+            calculateLightPosition();
+            Repaint();
         }
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
@@ -306,14 +311,13 @@ namespace TriangleFilling
         {
             if (animationCheckBox.Checked)
             {
-                ShouldAnimate = true;
                 lightRotationTrackBar.Enabled = false;
-                AnimationTask = Task.Run(() => AnimateRotation());
+                Timer.Enabled = true;
             }
             else
             {
-                ShouldAnimate = false;
                 lightRotationTrackBar.Enabled = true;
+                Timer.Enabled = false;
             }
         }
 
@@ -342,7 +346,7 @@ namespace TriangleFilling
         {
             InitializeLighting();
 
-            InitializeControls();
+            InitializeTimer();
         }
 
         private void surfaceTextureButton_Click(object sender, EventArgs e)
