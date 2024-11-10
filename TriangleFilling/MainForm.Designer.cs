@@ -30,6 +30,8 @@
         {
             mainSplitContainer = new SplitContainer();
             mainPictureBox = new PictureBox();
+            useNormalTextureCheckbox = new CheckBox();
+            normalTextureButton = new Button();
             surfaceTextureButton = new Button();
             label9 = new Label();
             lightRadiusTrackBar = new TrackBar();
@@ -85,6 +87,8 @@
             // 
             // mainSplitContainer.Panel2
             // 
+            mainSplitContainer.Panel2.Controls.Add(useNormalTextureCheckbox);
+            mainSplitContainer.Panel2.Controls.Add(normalTextureButton);
             mainSplitContainer.Panel2.Controls.Add(surfaceTextureButton);
             mainSplitContainer.Panel2.Controls.Add(label9);
             mainSplitContainer.Panel2.Controls.Add(lightRadiusTrackBar);
@@ -110,7 +114,7 @@
             mainSplitContainer.Panel2.Controls.Add(alphaDegreeTrackBar);
             mainSplitContainer.Panel2.Controls.Add(label1);
             mainSplitContainer.Panel2.Controls.Add(precisionTrackBar);
-            mainSplitContainer.Size = new Size(884, 561);
+            mainSplitContainer.Size = new Size(884, 581);
             mainSplitContainer.SplitterDistance = 634;
             mainSplitContainer.TabIndex = 0;
             // 
@@ -120,10 +124,30 @@
             mainPictureBox.Dock = DockStyle.Fill;
             mainPictureBox.Location = new Point(0, 0);
             mainPictureBox.Name = "mainPictureBox";
-            mainPictureBox.Size = new Size(634, 561);
+            mainPictureBox.Size = new Size(634, 581);
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
+            // 
+            // useNormalTextureCheckbox
+            // 
+            useNormalTextureCheckbox.AutoSize = true;
+            useNormalTextureCheckbox.Location = new Point(119, 553);
+            useNormalTextureCheckbox.Name = "useNormalTextureCheckbox";
+            useNormalTextureCheckbox.Size = new Size(119, 19);
+            useNormalTextureCheckbox.TabIndex = 28;
+            useNormalTextureCheckbox.Text = "use norm. texture";
+            useNormalTextureCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // normalTextureButton
+            // 
+            normalTextureButton.Location = new Point(10, 550);
+            normalTextureButton.Name = "normalTextureButton";
+            normalTextureButton.Size = new Size(96, 23);
+            normalTextureButton.TabIndex = 27;
+            normalTextureButton.Text = "Normal texture";
+            normalTextureButton.UseVisualStyleBackColor = true;
+            normalTextureButton.Click += normalTextureButton_Click;
             // 
             // surfaceTextureButton
             // 
@@ -388,9 +412,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 561);
+            ClientSize = new Size(884, 581);
             Controls.Add(mainSplitContainer);
-            MinimumSize = new Size(900, 600);
+            MinimumSize = new Size(900, 620);
             Name = "MainForm";
             Text = "Triangle Filler";
             Shown += MainForm_Shown;
@@ -441,5 +465,7 @@
         private Label label9;
         private TrackBar lightRadiusTrackBar;
         private Button surfaceTextureButton;
+        private CheckBox useNormalTextureCheckbox;
+        private Button normalTextureButton;
     }
 }

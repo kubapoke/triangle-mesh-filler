@@ -9,10 +9,11 @@ namespace TriangleFilling.Grid3D
         private List<Vertex> Vertices;
         private List<Triangle> Triangles;
         private Texture Texture;
+        private NormalTexture NormalTexture;
         private float Kd, Ks;
         private int M;
 
-        internal Grid(Vector3[,] V, float width, float heigth, int precision, float kd, float ks, int m, Texture texture)
+        internal Grid(Vector3[,] V, float width, float heigth, int precision, float kd, float ks, int m, Texture texture, NormalTexture normalTexture)
         {
             Size = Math.Min(width, heigth);
             float step = 1f / (float)(precision);
@@ -20,6 +21,7 @@ namespace TriangleFilling.Grid3D
             AddVertices(V, precision, step);
             AddTrinagles(precision);
             Texture = texture;
+            NormalTexture = normalTexture;
             Kd = kd;
             Ks = ks;
             M = m;
@@ -157,12 +159,13 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true, bool shouldDrawFill = true, bool shouldDrawLight = false)
+        public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true,
+            bool shouldDrawFill = true, bool shouldDrawLight = false, bool shouldUseNormalTexture = false)
         {
             Parallel.ForEach(Triangles, triangle =>
             {
                 if (shouldDrawFill)
-                    triangle.Fill(g, Texture, Kd, Ks, M, light);
+                    triangle.Fill(g, Texture, Kd, Ks, M, light, shouldUseNormalTexture ? NormalTexture : null);
             });
             Parallel.ForEach(Triangles, triangle =>
             {
@@ -194,6 +197,11 @@ namespace TriangleFilling.Grid3D
         public void SetTexture(Texture texture)
         {
             Texture = texture;
+        }
+
+        public void SetNormalTexture(NormalTexture normalTexture)
+        {
+            NormalTexture = normalTexture;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace TriangleFilling
         private System.Windows.Forms.Timer Timer;
         private Color LightColor;
         private Texture Texture;
+        private NormalTexture NormalTexture;
         private int Precision
         {
             get
@@ -44,6 +45,14 @@ namespace TriangleFilling
             get
             {
                 return showLightCheckBox.Checked;
+            }
+        }
+
+        private bool ShouldUseNormalVectorMap
+        {
+            get
+            {
+                return useNormalTextureCheckbox.Checked;
             }
         }
 
@@ -120,7 +129,7 @@ namespace TriangleFilling
         {
             float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.3f;
 
-            using (StreamReader sr = new StreamReader(".\\Inputs\\input.txt"))
+            using (StreamReader sr = new StreamReader(".\\Inputs\\input1.txt"))
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -144,8 +153,9 @@ namespace TriangleFilling
             }
 
             Texture = new Texture(".\\Textures\\texture1.png");
+            NormalTexture = new NormalTexture(".\\NormalMaps\\normalmap1.png");
 
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture, NormalTexture);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
         }
 
@@ -177,7 +187,7 @@ namespace TriangleFilling
             g.ScaleTransform(1, -1);
             g.TranslateTransform(mainPictureBox.Width / 2, -mainPictureBox.Height / 2);
 
-            Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill, ShouldDrawLight);
+            Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill, ShouldDrawLight, ShouldUseNormalVectorMap);
         }
 
         private void calculateLightPosition()
@@ -188,18 +198,18 @@ namespace TriangleFilling
 
             lightRadiusTrackBar.Invoke(() =>
             {
-            radius = lightRadius;
+                radius = lightRadius;
             });
-            
+
             lightRotationTrackBar.Invoke(() =>
             {
-            rotation = lightRotation;
-            maxRotation = lightRotationMaximum;
+                rotation = lightRotation;
+                maxRotation = lightRotationMaximum;
             });
 
             lightHeightTrackBar.Invoke(() =>
             {
-            height = lightHeight;
+                height = lightHeight;
             });
 
             float x = (float)Math.Cos(rotation * 2.0 * Math.PI / maxRotation) * radius;
@@ -228,14 +238,14 @@ namespace TriangleFilling
                 else
                     lightRotation = lightRotation + 5;
             });
-            
+
             calculateLightPosition();
             Repaint();
         }
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture);
+            Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture, NormalTexture);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
             Repaint();
         }
@@ -365,6 +375,26 @@ namespace TriangleFilling
                 Texture = new Texture(path);
 
                 Grid.SetTexture(Texture);
+
+                Repaint();
+            }
+        }
+
+        private void normalTextureButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = ".\\NormalMaps",
+                Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+
+                NormalTexture = new NormalTexture(path);
+
+                Grid.SetNormalTexture(NormalTexture);
 
                 Repaint();
             }
