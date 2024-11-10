@@ -40,14 +40,13 @@ namespace TriangleFilling.Coloring
 
                 Vector3 objectColor = texture.GetPixelVector(u, v);
 
-                Vector3 N = coords[0] * normals[0] + coords[1] * normals[1] + coords[2] * normals[2];
-                N = Vector3.Normalize(N);
+                Vector3 N = Vector3.Normalize(coords[0] * normals[0] + coords[1] * normals[1] + coords[2] * normals[2]);
 
                 if (normalTexture != null)
                 {
                     Vector3 normal = N;
-                    Vector3 tangentU = coords[0] * tangentUs[0] + coords[1] * tangentUs[1] + coords[2] * tangentUs[2];
-                    Vector3 tangentV = coords[0] * tangentVs[0] + coords[1] * tangentVs[1] + coords[2] * tangentVs[2];
+                    Vector3 tangentU = Vector3.Normalize(coords[0] * tangentUs[0] + coords[1] * tangentUs[1] + coords[2] * tangentUs[2]);
+                    Vector3 tangentV = Vector3.Normalize(coords[0] * tangentVs[0] + coords[1] * tangentVs[1] + coords[2] * tangentVs[2]);
                     Vector3 mapNormal = normalTexture.GetPixelVector(u, v);
 
                     mapNormal = Vector3.Normalize(mapNormal);

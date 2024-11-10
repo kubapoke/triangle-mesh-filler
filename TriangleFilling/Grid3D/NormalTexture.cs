@@ -11,7 +11,7 @@ namespace TriangleFilling.Grid3D
             Vector3 color = GetPixelVector(u, v);
             Vector3 normal = new Vector3(color.X / 127.5f - 1, color.Y / 127.5f - 1, color.Z / 255f);
 
-            return normal;
+            return Vector3.Normalize(normal);
         }
     }
 }
