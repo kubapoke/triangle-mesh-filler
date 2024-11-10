@@ -8,9 +8,8 @@ namespace TriangleFilling.Grid3D
 
         public Vector3 GetPixelNormal(float u, float v)
         {
-            Vector3 color = GetPixelVector(u, v);
-            Vector3 normal = new Vector3(color.X / 127.5f - 1, color.Y / 127.5f - 1, color.Z / 255f);
-
+            Vector3 color = Vector3.Normalize(GetPixelVector(u, v));
+            Vector3 normal = color * 2f - new Vector3(1, 1, 1);
             return Vector3.Normalize(normal);
         }
     }
