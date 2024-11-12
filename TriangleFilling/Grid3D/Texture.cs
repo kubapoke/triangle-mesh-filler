@@ -6,12 +6,22 @@ namespace TriangleFilling.Grid3D
     {
         public Bitmap Bitmap;
         private int Width, Height;
+        private Color[,] Colors;
 
         public Texture(string imagePath)
         {
             Bitmap = (Bitmap)Image.FromFile(imagePath);
             Width = Bitmap.Width;
             Height = Bitmap.Height;
+            Colors = new Color[Width, Height];
+
+            for(int x = 0;  x < Width; x++)
+            {
+                for(int y = 0; y < Height; y++)
+                {
+                    Colors[x, y] = Bitmap.GetPixel(x, y);
+                }
+            }
         }
 
         public Color GetPixelColor(float u, float v)
@@ -25,10 +35,7 @@ namespace TriangleFilling.Grid3D
             if (y < 0) y = 0;
             else if (y >= Height) y = Height - 1;
 
-            lock(Bitmap)
-            {
-                return Bitmap.GetPixel(x, y);
-            }        
+                return Colors[x, y];     
         }
 
         public Vector3 GetPixelVector(float u, float v)
