@@ -138,6 +138,7 @@
             useNormalTextureCheckbox.TabIndex = 28;
             useNormalTextureCheckbox.Text = "use norm. texture";
             useNormalTextureCheckbox.UseVisualStyleBackColor = true;
+            useNormalTextureCheckbox.CheckedChanged += useNormalTextureCheckbox_CheckedChanged;
             // 
             // normalTextureButton
             // 

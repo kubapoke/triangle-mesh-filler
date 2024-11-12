@@ -375,9 +375,9 @@ namespace TriangleFilling
                 Texture = new Texture(path);
 
                 Grid.SetTexture(Texture);
-
-                Repaint();
             }
+
+            Repaint();
         }
 
         private void normalTextureButton_Click(object sender, EventArgs e)
@@ -395,9 +395,14 @@ namespace TriangleFilling
                 NormalTexture = new NormalTexture(path);
 
                 Grid.SetNormalTexture(NormalTexture);
-
-                Repaint();
             }
+
+            Repaint();
+        }
+
+        private void useNormalTextureCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Repaint();
         }
     }
 }
