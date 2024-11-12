@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using TriangleFilling.FastBitmap;
 using TriangleFilling.Lighting;
 
 namespace TriangleFilling.Grid3D
@@ -159,19 +160,32 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Draw(Graphics g, LightSource light, bool shouldDrawOutline = true,
+        public void Draw(Graphics g, DirectBitmap b, LightSource light, bool shouldDrawOutline = true,
             bool shouldDrawFill = true, bool shouldDrawLight = false, bool shouldUseNormalTexture = false)
         {
-            Parallel.ForEach(Triangles, triangle =>
+            if (shouldDrawFill)
             {
-                if (shouldDrawFill)
-                    triangle.Fill(g, Texture, Kd, Ks, M, light, shouldUseNormalTexture ? NormalTexture : null);
-            });
-            Parallel.ForEach(Triangles, triangle =>
+                Color[,] colors = new Color[b.Width, b.Height];
+                Parallel.ForEach(Triangles, triangle =>
+                {
+                    triangle.Fill(g, colors, Texture, Kd, Ks, M, light, shouldUseNormalTexture ? NormalTexture : null);
+                });
+
+                for (int x = 0; x < b.Width; x++)
+                {
+                    for (int y = 0; y < b.Height; y++)
+                    {
+                        b.SetPixel(x, y, colors[x, y]);
+                    }
+                }
+            }
+            if (shouldDrawOutline)
             {
-                if (shouldDrawOutline)
+                Parallel.ForEach(Triangles, triangle =>
+                {
                     triangle.Draw(g);
-            });
+                });
+            }
 
             if (shouldDrawLight)
             {

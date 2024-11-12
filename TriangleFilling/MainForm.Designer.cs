@@ -83,6 +83,7 @@
             // 
             // mainSplitContainer.Panel1
             // 
+            mainSplitContainer.Panel1.BackColor = SystemColors.ControlDarkDark;
             mainSplitContainer.Panel1.Controls.Add(mainPictureBox);
             // 
             // mainSplitContainer.Panel2
@@ -120,14 +121,15 @@
             // 
             // mainPictureBox
             // 
-            mainPictureBox.BackColor = SystemColors.ControlDarkDark;
-            mainPictureBox.Dock = DockStyle.Fill;
+            mainPictureBox.Anchor = AnchorStyles.None;
+            mainPictureBox.BackColor = Color.Transparent;
             mainPictureBox.Location = new Point(0, 0);
             mainPictureBox.Name = "mainPictureBox";
             mainPictureBox.Size = new Size(634, 581);
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
+            mainPictureBox.Resize += mainPictureBox_Resize;
             // 
             // useNormalTextureCheckbox
             // 

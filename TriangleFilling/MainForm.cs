@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 using System.Timers;
+using TriangleFilling.FastBitmap;
 using TriangleFilling.Grid3D;
 using TriangleFilling.Lighting;
 
@@ -16,6 +16,7 @@ namespace TriangleFilling
         private Color LightColor;
         private Texture Texture;
         private NormalTexture NormalTexture;
+        private DirectBitmap DirectBitmap;
         private int Precision
         {
             get
@@ -122,12 +123,14 @@ namespace TriangleFilling
 
             InitializeGrid();
 
+            InitializeDrawing();
+
             Repaint();
         }
 
         private void InitializeGrid()
         {
-            float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.3f;
+            float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.4f;
 
             using (StreamReader sr = new StreamReader(".\\Inputs\\input1.txt"))
             {
@@ -159,6 +162,12 @@ namespace TriangleFilling
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
         }
 
+        private void InitializeDrawing()
+        {
+            DirectBitmap = new DirectBitmap(mainPictureBox.Width, mainPictureBox.Height);
+            mainPictureBox.Image = DirectBitmap.Bitmap;
+        }
+
         private void InitializeLighting()
         {
             Light = new LightSource(new Vector3(0, 0, 0), Color.White);
@@ -187,7 +196,7 @@ namespace TriangleFilling
             g.ScaleTransform(1, -1);
             g.TranslateTransform(mainPictureBox.Width / 2, -mainPictureBox.Height / 2);
 
-            Grid.Draw(e.Graphics, Light, ShouldDrawOutline, ShouldDrawFill, ShouldDrawLight, ShouldUseNormalVectorMap);
+            Grid.Draw(e.Graphics, DirectBitmap, Light, ShouldDrawOutline, ShouldDrawFill, ShouldDrawLight, ShouldUseNormalVectorMap);
         }
 
         private void calculateLightPosition()
@@ -364,7 +373,7 @@ namespace TriangleFilling
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = ".\\Textures",
+                InitialDirectory = ".\\Textures\\",
                 Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp"
             };
 
@@ -384,7 +393,7 @@ namespace TriangleFilling
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = ".\\NormalMaps",
+                InitialDirectory = ".\\NormalMaps\\",
                 Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp"
             };
 
@@ -403,6 +412,11 @@ namespace TriangleFilling
         private void useNormalTextureCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Repaint();
+        }
+
+        private void mainPictureBox_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }

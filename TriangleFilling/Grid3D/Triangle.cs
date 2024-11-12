@@ -30,14 +30,14 @@ namespace TriangleFilling.Grid3D
             }
         }
 
-        public void Fill(Graphics g, Texture texture, float kd, float ks, int m, LightSource light, NormalTexture? normalTexture = null)
+        public void Fill(Graphics g, Color[,] colors, Texture texture, float kd, float ks, int m, LightSource light, NormalTexture? normalTexture = null)
         {
             List<Vector3> vertices = new List<Vector3>() { V0, V1, V2 };
             List<Vector3> normals = new List<Vector3>() { V0.NormalRotated, V1.NormalRotated, V2.NormalRotated };
-            List<Vector3> tangentUs = new List<Vector3>() { V0.TangentURotated,  V1.TangentURotated, V2.TangentURotated };
-            List<Vector3> tangentVs = new List<Vector3>() { V0.TangentVRotated,  V1.TangentVRotated, V2.TangentVRotated };
+            List<Vector3> tangentUs = new List<Vector3>() { V0.TangentURotated, V1.TangentURotated, V2.TangentURotated };
+            List<Vector3> tangentVs = new List<Vector3>() { V0.TangentVRotated, V1.TangentVRotated, V2.TangentVRotated };
             List<Vector2> gridCoordinates = new List<Vector2> { V0.GridCoordinates, V1.GridCoordinates, V2.GridCoordinates };
-            ShapeColorer.ColorShapeWithLighting(g, vertices, kd, ks, m, texture, light, normals, tangentUs, tangentVs, gridCoordinates, normalTexture);
+            ShapeColorer.ColorShapeWithLighting(g, colors, vertices, kd, ks, m, texture, light, normals, tangentUs, tangentVs, gridCoordinates, normalTexture);
         }
     }
 }

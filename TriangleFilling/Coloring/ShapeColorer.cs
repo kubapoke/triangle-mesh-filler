@@ -19,7 +19,7 @@ namespace TriangleFilling.Coloring
             }
         }
 
-        public static void ColorShapeWithLighting(Graphics g, List<Vector3> vertices, float kd, float ks, int m,
+        public static void ColorShapeWithLighting(Graphics g, Color[,] colors, List<Vector3> vertices, float kd, float ks, int m,
             Texture texture, LightSource light, List<Vector3> normals, List<Vector3> tangentUs, List<Vector3> tangentVs,
             List<Vector2> gridCoordinates, NormalTexture? normalTexture = null)
         {
@@ -75,10 +75,11 @@ namespace TriangleFilling.Coloring
 
                 finalColor = Vector3.Clamp(finalColor, new Vector3(0), new Vector3(255));
 
-                var brush = new SolidBrush(Color.FromArgb((int)finalColor.X, (int)finalColor.Y, (int)finalColor.Z));
-                lock (g)
+                int x = point.x + colors.GetLength(0) / 2, y = point.y + colors.GetLength(1) / 2;
+
+                if (x >= 0 && x < colors.GetLength(0) && y >= 0 && y < colors.GetLength(1))
                 {
-                    g.FillRectangle(brush, (int)point.x, (int)point.y, 1, 1);
+                    colors[x, y] = Color.FromArgb((int)finalColor.X, (int)finalColor.Y, (int)finalColor.Z);
                 }
             });
         }
