@@ -373,9 +373,10 @@ namespace TriangleFilling
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = ".\\Textures\\",
-                Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp"
+                InitialDirectory = Path.GetFullPath(".\\Textures\\"),
+                Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp",
             };
+            openFileDialog.AutoUpgradeEnabled = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -393,9 +394,10 @@ namespace TriangleFilling
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = ".\\NormalMaps\\",
-                Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp"
+                InitialDirectory = Path.GetFullPath(".\\NormalMaps\\"),
+                Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp",
             };
+            openFileDialog.AutoUpgradeEnabled = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -405,6 +407,8 @@ namespace TriangleFilling
 
                 Grid.SetNormalTexture(NormalTexture);
             }
+
+            useNormalTextureCheckbox.Checked = true;
 
             Repaint();
         }
