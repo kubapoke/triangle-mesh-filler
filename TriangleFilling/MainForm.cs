@@ -417,10 +417,5 @@ namespace TriangleFilling
         {
             Repaint();
         }
-
-        private void mainPictureBox_Resize(object sender, EventArgs e)
-        {
-
-        }
     }
 }

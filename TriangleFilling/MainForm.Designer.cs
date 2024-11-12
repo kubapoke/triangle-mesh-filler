@@ -129,7 +129,6 @@
             mainPictureBox.TabIndex = 0;
             mainPictureBox.TabStop = false;
             mainPictureBox.Paint += mainPictureBox_Paint;
-            mainPictureBox.Resize += mainPictureBox_Resize;
             // 
             // useNormalTextureCheckbox
             // 
