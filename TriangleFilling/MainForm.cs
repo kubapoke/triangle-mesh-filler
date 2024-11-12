@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Numerics;
-using System.Timers;
 using TriangleFilling.FastBitmap;
 using TriangleFilling.Grid3D;
 using TriangleFilling.Lighting;
@@ -12,7 +11,7 @@ namespace TriangleFilling
         private Grid Grid;
         private Vector3[,] Coordinates = new Vector3[4, 4];
         private LightSource Light;
-        private System.Windows.Forms.Timer Timer;
+        private System.Windows.Forms.Timer AnimationTimer, RepaintTimer;
         private Color LightColor;
         private Texture Texture;
         private NormalTexture NormalTexture;
@@ -176,17 +175,22 @@ namespace TriangleFilling
             LightColor = lightColorPanel.BackColor;
         }
 
-        private void InitializeTimer()
+        private void InitializeTimers()
         {
-            Timer = new System.Windows.Forms.Timer();
-            Timer.Tick += new EventHandler(onTimer_Tick);
-            Timer.Interval = 20;
+            AnimationTimer = new System.Windows.Forms.Timer();
+            AnimationTimer.Tick += new EventHandler(onAnimationTimer_Tick);
+            AnimationTimer.Interval = 20;
 
             if (animationCheckBox.Checked)
             {
-                Timer.Enabled = true;
+                AnimationTimer.Enabled = true;
                 lightRotationTrackBar.Enabled = false;
             }
+
+            RepaintTimer = new System.Windows.Forms.Timer();
+            RepaintTimer.Tick += new EventHandler(onRepaintTimer_Tick);
+            RepaintTimer.Interval = 20;
+            RepaintTimer.Enabled = true;
         }
 
         private void mainPictureBox_Paint(object sender, PaintEventArgs e)
@@ -230,12 +234,17 @@ namespace TriangleFilling
 
         private void Repaint()
         {
-            mainPictureBox.Invalidate();
+            mainPictureBox.Refresh();
         }
 
-        public void onTimer_Tick(object source, EventArgs e)
+        public void onAnimationTimer_Tick(object source, EventArgs e)
         {
             AnimateRotation();
+        }
+
+        public void onRepaintTimer_Tick(object sender, EventArgs e)
+        {
+            Repaint();
         }
 
         public void AnimateRotation()
@@ -249,26 +258,22 @@ namespace TriangleFilling
             });
 
             calculateLightPosition();
-            Repaint();
         }
 
         private void precisionTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture, NormalTexture);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
-            Repaint();
         }
 
         private void alphaDegreeTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid.Rotate(alphaDegreeTrackBar.Value, null);
-            Repaint();
         }
 
         private void betaDegreeTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid.Rotate(null, betaDegreeTrackBar.Value);
-            Repaint();
         }
 
         private void fillCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -277,8 +282,6 @@ namespace TriangleFilling
             {
                 outlineCheckbox.Checked = true;
             }
-
-            Repaint();
         }
 
         private void outlineCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -287,44 +290,36 @@ namespace TriangleFilling
             {
                 fillCheckBox.Checked = true;
             }
-
-            Repaint();
         }
 
         private void kdTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid.SetKd(Kd);
-            Repaint();
         }
 
         private void ksTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid.SetKs(Ks);
-            Repaint();
         }
 
         private void mTrackBar_Scroll(object sender, EventArgs e)
         {
             Grid.SetM(M);
-            Repaint();
         }
 
         private void lightHeightTrackBar_Scroll(object sender, EventArgs e)
         {
             calculateLightPosition();
-            Repaint();
         }
 
         private void lightRotationTrackBar_Scroll(object sender, EventArgs e)
         {
             calculateLightPosition();
-            Repaint();
         }
 
         private void lightRadiusTrackBar_Scroll(object sender, EventArgs e)
         {
             calculateLightPosition();
-            Repaint();
         }
 
         private void animationCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -332,12 +327,12 @@ namespace TriangleFilling
             if (animationCheckBox.Checked)
             {
                 lightRotationTrackBar.Enabled = false;
-                Timer.Enabled = true;
+                AnimationTimer.Enabled = true;
             }
             else
             {
                 lightRotationTrackBar.Enabled = true;
-                Timer.Enabled = false;
+                AnimationTimer.Enabled = false;
             }
         }
 
@@ -353,20 +348,18 @@ namespace TriangleFilling
                 lightColorPanel.BackColor = LightColor = dialog.Color;
                 Light.Color = LightColor;
             }
-
-            Repaint();
         }
 
         private void showLightCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Repaint();
+
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
             InitializeLighting();
 
-            InitializeTimer();
+            InitializeTimers();
         }
 
         private void surfaceTextureButton_Click(object sender, EventArgs e)
@@ -386,8 +379,6 @@ namespace TriangleFilling
 
                 Grid.SetTexture(Texture);
             }
-
-            Repaint();
         }
 
         private void normalTextureButton_Click(object sender, EventArgs e)
@@ -409,13 +400,11 @@ namespace TriangleFilling
             }
 
             useNormalTextureCheckbox.Checked = true;
-
-            Repaint();
         }
 
         private void useNormalTextureCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            Repaint();
+
         }
     }
 }
