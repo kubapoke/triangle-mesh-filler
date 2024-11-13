@@ -28,12 +28,12 @@ namespace TriangleFilling.FastBitmap
             return (x, -y + Height);
         }
 
-        public void SetPixel(int x, int y, Color colour)
+        public void SetPixel(int x, int y, Color color)
         {
             (x, y) = TransformCoords(x, y);
 
             int index = x + (y * Width);
-            int col = colour.ToArgb();
+            int col = color.ToArgb();
 
             if (index >= 0 && index < Bits.Length)
                 Bits[index] = col;

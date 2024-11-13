@@ -231,6 +231,7 @@ namespace TriangleFilling
         private void Repaint()
         {
             mainPictureBox.Invalidate();
+            mainPictureBox.Update();
         }
 
         public void onTimer_Tick(object source, EventArgs e)
