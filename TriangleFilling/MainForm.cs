@@ -276,6 +276,7 @@ namespace TriangleFilling
             if (!fillCheckBox.Checked)
             {
                 outlineCheckbox.Checked = true;
+                DirectBitmap.Clear();
             }
 
             Repaint();

@@ -50,6 +50,15 @@ namespace TriangleFilling.FastBitmap
             return result;
         }
 
+        public void Clear()
+        {
+            for(int x = 0; x < Bitmap.Width; x++)
+            {
+                for (int y = 0; y < Bitmap.Height; y++)
+                    SetPixel(x, y, Color.Transparent);
+            }
+        }
+
         public void Dispose()
         {
             if (Disposed) return;
