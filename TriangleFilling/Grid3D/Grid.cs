@@ -9,10 +9,11 @@ namespace TriangleFilling.Grid3D
         private float Size, RotationAlpha = 0, RotationBeta = 0;
         private List<Vertex> Vertices;
         private List<Triangle> Triangles;
-        private Texture Texture;
-        private NormalTexture NormalTexture;
-        private float Kd, Ks;
-        private int M;
+        public Texture Texture { get; set; }
+        public NormalTexture NormalTexture { get; set; }
+        public float Kd { get; set; }
+        public float Ks { get; set; }
+        public int M { get; set; }
 
         internal Grid(Vector3[,] V, float width, float heigth, int precision, float kd, float ks, int m, Texture texture, NormalTexture normalTexture)
         {
@@ -191,31 +192,6 @@ namespace TriangleFilling.Grid3D
             {
                 light.Draw(g);
             }
-        }
-
-        public void SetKd(float kd)
-        {
-            Kd = kd;
-        }
-
-        public void SetKs(float ks)
-        {
-            Ks = ks;
-        }
-
-        public void SetM(int m)
-        {
-            M = m;
-        }
-
-        public void SetTexture(Texture texture)
-        {
-            Texture = texture;
-        }
-
-        public void SetNormalTexture(NormalTexture normalTexture)
-        {
-            NormalTexture = normalTexture;
         }
     }
 }

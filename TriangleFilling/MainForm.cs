@@ -294,19 +294,19 @@ namespace TriangleFilling
 
         private void kdTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid.SetKd(Kd);
+            Grid.Kd = Kd;
             Repaint();
         }
 
         private void ksTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid.SetKs(Ks);
+            Grid.Ks = Ks;
             Repaint();
         }
 
         private void mTrackBar_Scroll(object sender, EventArgs e)
         {
-            Grid.SetM(M);
+            Grid.M = M;
             Repaint();
         }
 
@@ -385,7 +385,7 @@ namespace TriangleFilling
 
                 Texture = new Texture(path);
 
-                Grid.SetTexture(Texture);
+                Grid.Texture = Texture;
             }
 
             Repaint();
@@ -406,7 +406,7 @@ namespace TriangleFilling
 
                 NormalTexture = new NormalTexture(path);
 
-                Grid.SetNormalTexture(NormalTexture);
+                Grid.NormalTexture = NormalTexture;
             }
 
             useNormalTextureCheckbox.Checked = true;
