@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Numerics;
-using System.Timers;
 using TriangleFilling.FastBitmap;
 using TriangleFilling.Grid3D;
 using TriangleFilling.Lighting;
@@ -130,7 +129,7 @@ namespace TriangleFilling
         {
             float multiplier = Math.Min(mainPictureBox.Width, mainPictureBox.Height) * 0.4f;
 
-            using (StreamReader sr = new StreamReader(".\\Inputs\\input1.txt"))
+            using (StreamReader sr = new StreamReader(".\\Assets\\Inputs\\input1.txt"))
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -153,8 +152,8 @@ namespace TriangleFilling
                 }
             }
 
-            Texture = new Texture(".\\Textures\\texture1.png");
-            NormalTexture = new NormalTexture(".\\NormalMaps\\normalmap1.png");
+            Texture = new Texture(".\\Assets\\Textures\\texture1.png");
+            NormalTexture = new NormalTexture(".\\Assets\\NormalMaps\\normalmap1.png");
 
             Grid = new Grid(Coordinates, mainPictureBox.Width, mainPictureBox.Height, Precision, Kd, Ks, M, Texture, NormalTexture);
             Grid.Rotate(alphaDegreeTrackBar.Value, betaDegreeTrackBar.Value);
@@ -367,7 +366,7 @@ namespace TriangleFilling
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = Path.GetFullPath(".\\Textures\\"),
+                InitialDirectory = Path.GetFullPath(".\\Assets\\Textures\\"),
                 Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp",
             };
             openFileDialog.AutoUpgradeEnabled = true;
@@ -386,7 +385,7 @@ namespace TriangleFilling
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = Path.GetFullPath(".\\NormalMaps\\"),
+                InitialDirectory = Path.GetFullPath(".\\Assets\\NormalMaps\\"),
                 Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp",
             };
             openFileDialog.AutoUpgradeEnabled = true;
